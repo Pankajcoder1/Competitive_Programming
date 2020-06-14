@@ -1,2 +1,2 @@
 # competitive_programming
-contain file of my competitive programming.
+Contain file of my competitive programming.
