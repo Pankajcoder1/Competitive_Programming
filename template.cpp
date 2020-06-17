@@ -38,6 +38,7 @@ typedef set<ll> sl;
 #define Endl "\n"
 // loops
 #define loop(i,start,end) for(ll i=start;i<end;i++)
+#define loop0(num) for(ll i=0;i<ll(num);i++)
 // Some print
 #define no cout<<"NO"<<endl;
 #define yes cout<<"YES"<<endl;
