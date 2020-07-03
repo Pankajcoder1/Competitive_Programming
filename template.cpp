@@ -21,7 +21,7 @@ typedef set<int> si;
 typedef set<ll> sl;
 #define pan cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 // define values.
-#define mod 1000000007
+#define mod 1000000007;
 #define phi 1.618
 /* Bit-Stuff */
 #define get_set_bits(a) (__builtin_popcount(a))
@@ -36,12 +36,14 @@ typedef set<ll> sl;
 #define line cout<<endl;
 #define pb push_back
 #define Endl "\n"
-// loops
-#define loop(i,start,end) for(ll i=start;i<end;i++)
-#define loop0(num) for(ll i=0;i<ll(num);i++)
+#define loopi(a,b) for(int i=a;i<=b;i++)
 // Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
+#define no cout<<"NO"<<endl
+#define yes cout<<"YES"<<endl
+// sort
+#define all(V) (V).begin(),(V).end()
+#define srt(V) sort(all(V))
+#define srtGreat(V) sort(all(V),greater<ll>())
 // function
 
 ll power(ll x,ll y)
@@ -62,10 +64,5 @@ A=65,Z=90,a=97,z=122
 int main()
 {
 	pan;
-	ll test;
-	cin>>test;
-	while(test--)
-	{
-		
-	}
+	
 }
