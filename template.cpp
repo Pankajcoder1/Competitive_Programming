@@ -17,11 +17,12 @@ typedef vector<string> vs;
 typedef map<int,int>mi;
 typedef map<ll,ll> ml;
 typedef set<string> ss;
+typedef set<char>sc;
 typedef set<int> si;
 typedef set<ll> sl;
 #define pan cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 // define values.
-#define mod 1000000007;
+#define mod 1000000007
 #define phi 1.618
 /* Bit-Stuff */
 #define get_set_bits(a) (__builtin_popcount(a))
@@ -36,10 +37,14 @@ typedef set<ll> sl;
 #define line cout<<endl;
 #define pb push_back
 #define Endl "\n"
-#define loopi(a,b) for(int i=a;i<=b;i++)
+// loops
+#define loop(i,start,end) for(ll i=ll(start);i<ll(end);i++)
+#define loop0(num) for(ll i=0;i<ll(num);i++)
+#define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
-#define no cout<<"NO"<<endl
-#define yes cout<<"YES"<<endl
+#define no cout<<"NO"<<endl;
+#define yes cout<<"YES"<<endl;
+#define cc ll test;cin>>test;while(test--)
 // sort
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
@@ -63,6 +68,7 @@ A=65,Z=90,a=97,z=122
 
 int main()
 {
+	//freopen("input.txt"a, "r", stdin);
 	pan;
 	
 }
