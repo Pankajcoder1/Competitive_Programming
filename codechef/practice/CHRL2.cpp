@@ -73,33 +73,34 @@ A=65,Z=90,a=97,z=122 1=49
 
 int main()
 {
-	cc
-	{
-		ll n;
-		cin>>n;
-		vl v(n,0);
-		forin(v,n);
-		ll count=0,temp=0,sum=0;
-		temp=v[0];
-		ll flag=0;
-		loop(i,0,n)
-		{
-			if(v[i]>=temp)
-			{
-				flag=1;
-				count++;
-				temp=v[i];
-			}
-			else
-			{
-				flag=0;
-				temp=v[i];
-				sum+=((count+1)*count)/2;
-				count=1;
-			}
-			temp=v[i];
-		}
-		sum+=((count+1)*count)/2;
-		cout<<sum<<endl;
-	}
+	string s;
+    cin>>s;
+    ll n=s.length();
+    ll c=0,h=0,e=0,ans=0;
+    loop(i,0,s.length())
+    {
+        if(s[i]=='C')
+        {
+            c=max(c,i+1);
+            while(c<n&&s[c]!='H')
+                c++;
+            if(c==s.length())
+                break;
+            h=max(h,c+1);
+            if(h==s.length())
+                break;
+            while(h<n&&s[h]!='E')
+                h++;
+            e=max(e,h+1);
+            if(e==s.length())
+                break;
+            while(e<n&&s[e]!='F')
+                e++;
+            if(e==s.length())
+                break;
+            e++,c++,h++;
+            ans++;
+        }
+    }
+    cout<<ans<<endl;
 }

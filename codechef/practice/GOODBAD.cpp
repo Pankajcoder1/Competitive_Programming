@@ -74,32 +74,29 @@ A=65,Z=90,a=97,z=122 1=49
 int main()
 {
 	cc
-	{
-		ll n;
-		cin>>n;
-		vl v(n,0);
-		forin(v,n);
-		ll count=0,temp=0,sum=0;
-		temp=v[0];
-		ll flag=0;
-		loop(i,0,n)
-		{
-			if(v[i]>=temp)
-			{
-				flag=1;
-				count++;
-				temp=v[i];
-			}
-			else
-			{
-				flag=0;
-				temp=v[i];
-				sum+=((count+1)*count)/2;
-				count=1;
-			}
-			temp=v[i];
-		}
-		sum+=((count+1)*count)/2;
-		cout<<sum<<endl;
-	}
+    {
+        ll n,k;
+        cin>>n>>k;
+        string s;
+        cin>>s;
+        ll c=0,sm=0;
+        loop(i,0,s.length())
+        {
+            if(int(s[i])>=97&&int(s[i])<=122)
+                sm++;
+            else
+                c++;
+        }
+        if(max(sm,c)<=k)
+            cout<<"both"<<endl;
+        else if(min(c,sm)<=k&&max(sm,c)>k)
+        {
+            if(min(c,sm)==c)
+                cout<<"chef"<<endl;
+            else
+                cout<<"brother"<<endl;
+        }
+        else
+            cout<<"none"<<endl;
+    }
 }

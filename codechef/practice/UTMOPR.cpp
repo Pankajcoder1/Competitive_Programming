@@ -74,32 +74,24 @@ A=65,Z=90,a=97,z=122 1=49
 int main()
 {
 	cc
-	{
-		ll n;
-		cin>>n;
-		vl v(n,0);
-		forin(v,n);
-		ll count=0,temp=0,sum=0;
-		temp=v[0];
-		ll flag=0;
-		loop(i,0,n)
-		{
-			if(v[i]>=temp)
-			{
-				flag=1;
-				count++;
-				temp=v[i];
-			}
-			else
-			{
-				flag=0;
-				temp=v[i];
-				sum+=((count+1)*count)/2;
-				count=1;
-			}
-			temp=v[i];
-		}
-		sum+=((count+1)*count)/2;
-		cout<<sum<<endl;
-	}
+    {
+        ll n,k,sum=0;
+        cin>>n>>k;
+        ll temp;
+        loop0(n)
+        {
+            cin>>temp;
+            sum+=temp;
+        }
+        sum=sum*2+1;
+        if(k==1)
+        {
+            if(sum&1)
+                cout<<"odd"<<endl;
+            else
+                cout<<"even"<<endl;
+        }
+        else
+            cout<<"even"<<endl;
+    }
 }

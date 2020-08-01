@@ -74,32 +74,24 @@ A=65,Z=90,a=97,z=122 1=49
 int main()
 {
 	cc
-	{
-		ll n;
-		cin>>n;
-		vl v(n,0);
-		forin(v,n);
-		ll count=0,temp=0,sum=0;
-		temp=v[0];
-		ll flag=0;
-		loop(i,0,n)
-		{
-			if(v[i]>=temp)
-			{
-				flag=1;
-				count++;
-				temp=v[i];
-			}
-			else
-			{
-				flag=0;
-				temp=v[i];
-				sum+=((count+1)*count)/2;
-				count=1;
-			}
-			temp=v[i];
-		}
-		sum+=((count+1)*count)/2;
-		cout<<sum<<endl;
-	}
+    {
+        ll n;
+        cin>>n;
+        vector<pair<string,string>> v;
+        map<string,ll>m;
+        string s1,s2;
+        loop0(n)
+        {
+            cin>>s1>>s2;
+            m[s1]++;
+            v.pb(mp(s1,s2));
+        }
+        for(auto s:v)
+        {
+            if(m[s.ff]>1)
+                cout<<s.ff<<" "<<s.ss<<endl;
+            else
+                cout<<s.ff<<endl;
+        }
+    }
 }

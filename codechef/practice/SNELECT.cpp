@@ -22,7 +22,7 @@ typedef set<int> si;
 typedef set<ll> sl;
 #define pan cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 // define values.
-#define mod 1000000007
+#define mod 10e9+9LL
 #define phi 1.618
 /* Bit-Stuff */
 #define get_set_bits(a) (__builtin_popcount(a))
@@ -70,36 +70,35 @@ A=65,Z=90,a=97,z=122 1=49
 /*  -----------------------------------------------------------------------------------*/
 // freopen("input.txt", "r", stdin);
 // freopen("output.txt", "w", stdout);
-
+ 
 int main()
 {
 	cc
-	{
-		ll n;
-		cin>>n;
-		vl v(n,0);
-		forin(v,n);
-		ll count=0,temp=0,sum=0;
-		temp=v[0];
-		ll flag=0;
-		loop(i,0,n)
-		{
-			if(v[i]>=temp)
-			{
-				flag=1;
-				count++;
-				temp=v[i];
-			}
-			else
-			{
-				flag=0;
-				temp=v[i];
-				sum+=((count+1)*count)/2;
-				count=1;
-			}
-			temp=v[i];
-		}
-		sum+=((count+1)*count)/2;
-		cout<<sum<<endl;
-	}
+    {
+        string s;
+        cin>>s;
+        int len = s.length();
+        for(ll i=0;i<s.length()-1;i++) {
+            if(s[i] == 's' && s[i+1] == 'm') {
+                s[i+1] = 'M';
+                s[i] = '*';
+            } else if(s[i] == 'm' && s[i+1] == 's') {
+                s[i] = 'M';
+                s[i+1] = '*';
+            }
+        }
+        int mc = 0, sc = 0;
+        for(ll i=0;i<s.length();i++) {
+            if(s[i] == 'm' || s[i] == 'M')
+                mc++;
+            else if(s[i] == 's')
+                sc++;
+        }
+        if(sc > mc)
+            cout<<"snakes\n";
+        else if(mc > sc)
+            cout<<"mongooses\n";
+        else
+            cout<<"tie\n";
+    }
 }

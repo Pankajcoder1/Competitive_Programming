@@ -70,36 +70,37 @@ A=65,Z=90,a=97,z=122 1=49
 /*  -----------------------------------------------------------------------------------*/
 // freopen("input.txt", "r", stdin);
 // freopen("output.txt", "w", stdout);
+ll sum_of_digits(ll num)
+{
+    ll sum=0;
+    while(num!=0)
+    {
+        sum+=num%10;
+        num/=10;
+    }
+    return sum;
+}
 
 int main()
 {
 	cc
-	{
-		ll n;
-		cin>>n;
-		vl v(n,0);
-		forin(v,n);
-		ll count=0,temp=0,sum=0;
-		temp=v[0];
-		ll flag=0;
-		loop(i,0,n)
-		{
-			if(v[i]>=temp)
-			{
-				flag=1;
-				count++;
-				temp=v[i];
-			}
-			else
-			{
-				flag=0;
-				temp=v[i];
-				sum+=((count+1)*count)/2;
-				count=1;
-			}
-			temp=v[i];
-		}
-		sum+=((count+1)*count)/2;
-		cout<<sum<<endl;
-	}
+    {
+        ll n,maxo=0;
+        cin>>n;
+        vl v(n);
+        forin(v,n);
+        loop(i,0,n)
+        {
+            loop(j,0,n)
+            {
+                if(i!=j)
+                {
+                    ll temp=v[i]*v[j];
+                    temp=sum_of_digits(temp);
+                    maxo=max(maxo,temp);
+                }
+            }
+        }
+        cout<<maxo<<endl;
+    }
 }

@@ -74,32 +74,41 @@ A=65,Z=90,a=97,z=122 1=49
 int main()
 {
 	cc
-	{
-		ll n;
-		cin>>n;
-		vl v(n,0);
-		forin(v,n);
-		ll count=0,temp=0,sum=0;
-		temp=v[0];
-		ll flag=0;
-		loop(i,0,n)
-		{
-			if(v[i]>=temp)
-			{
-				flag=1;
-				count++;
-				temp=v[i];
-			}
-			else
-			{
-				flag=0;
-				temp=v[i];
-				sum+=((count+1)*count)/2;
-				count=1;
-			}
-			temp=v[i];
-		}
-		sum+=((count+1)*count)/2;
-		cout<<sum<<endl;
-	}
+    {
+        ll n;
+        cin>>n;
+        string s;
+        cin>>s;
+        vector<char> v;
+        ll flag=0;
+        loop(i,0,s.length())
+        {
+            if(s[i]!='.')
+                v.pb(s[i]);
+        }
+        if(v.size()>0&&v.size()%2==0)
+        {
+            if(v[0]!='H')
+            {
+                flag=1;
+            }
+            else
+            {
+                loop(i,0,v.size()-1)
+                {
+                    if(v[i]==v[i+1])
+                    {
+                        flag=1;
+                        break;
+                    }
+                }
+            }
+        }
+        else if(v.size()&1)
+            flag=1;
+        if(flag==1)
+            cout<<"Invalid"<<endl;
+        else
+            cout<<"Valid"<<endl;
+    }
 }

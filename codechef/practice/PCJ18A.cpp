@@ -22,7 +22,7 @@ typedef set<int> si;
 typedef set<ll> sl;
 #define pan cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 // define values.
-#define mod 1000000007
+#define mod 10e9+9LL
 #define phi 1.618
 /* Bit-Stuff */
 #define get_set_bits(a) (__builtin_popcount(a))
@@ -70,36 +70,23 @@ A=65,Z=90,a=97,z=122 1=49
 /*  -----------------------------------------------------------------------------------*/
 // freopen("input.txt", "r", stdin);
 // freopen("output.txt", "w", stdout);
-
+ 
 int main()
 {
 	cc
-	{
-		ll n;
-		cin>>n;
-		vl v(n,0);
-		forin(v,n);
-		ll count=0,temp=0,sum=0;
-		temp=v[0];
-		ll flag=0;
-		loop(i,0,n)
-		{
-			if(v[i]>=temp)
-			{
-				flag=1;
-				count++;
-				temp=v[i];
-			}
-			else
-			{
-				flag=0;
-				temp=v[i];
-				sum+=((count+1)*count)/2;
-				count=1;
-			}
-			temp=v[i];
-		}
-		sum+=((count+1)*count)/2;
-		cout<<sum<<endl;
-	}
+    {
+        ll n,x,temp;
+        cin>>n>>x;
+        ll flag=0;
+        loop(i,0,n)
+        {
+            cin>>temp;
+            if(temp>=x)
+                flag=1;
+        }
+        if(flag==1)
+            yes
+        else
+            no
+    }
 }
