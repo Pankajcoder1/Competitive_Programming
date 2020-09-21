@@ -13,7 +13,7 @@ typedef set<char>sc;
 typedef set<ll> sl;
 #define pan cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 // define values.
-#define mod 1000000007
+#define mod 10000009
 #define phi 1.618
 /* Bit-Stuff */
 #define get_set_bits(a) (__builtin_popcount(a))
@@ -63,24 +63,51 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-	ll n;
-	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	string s;
+	cin>>s;
+	map<char,ll> m;
+	for(auto x:s)
+		m[x]++;
+	ll temp1=min(m['U'],m['D']);
+	ll temp2=min(m['L'],m['R']);
+	if(temp1==0&&temp2==0)
 	{
-		if(v[i]>=v[i-1])
-			count++;
+		cout<<0<<endl;
+		cout<<" "<<endl;
+	}
+	else if(temp1==0)
+	{
+		if(temp2>=1)
+		{
+			cout<<2<<endl<<"LR"<<endl;
+		}
 		else
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			cout<<0<<endl<<" "<<endl;
 		}
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	else if(temp2==0)
+	{
+		if(temp1>=1)
+		{
+			cout<<2<<endl<<"UD"<<endl;
+		}
+	}
+	else
+	{
+		string s="";
+		for(ll i=0;i<temp1;i++)
+		{
+			s+='U';
+		}
+		for(ll i=0;i<temp2;i++)
+			s+='R';
+		for(ll i=0;i<temp1;i++)
+			s+='D';
+		for(ll i=0;i<temp2;i++)
+			s+='L';
+		cout<<s.size()<<endl<<s<<endl;
+	}
 	return 0;
 }
 

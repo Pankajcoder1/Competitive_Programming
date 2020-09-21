@@ -13,7 +13,7 @@ typedef set<char>sc;
 typedef set<ll> sl;
 #define pan cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 // define values.
-#define mod 1000000007
+#define mod 10000009
 #define phi 1.618
 /* Bit-Stuff */
 #define get_set_bits(a) (__builtin_popcount(a))
@@ -63,24 +63,28 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-	ll n;
-	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	ll n,k;
+	cin>>n>>k;
+	string s;
+	cin>>s;
+	set<char> st;
+	for(ll i=0;i<k;i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
-		{
-			sum+=((count*(count+1))/2);
-			count=1;
-		}
+		char temp;
+		cin>>temp;
+		st.insert(temp);
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	ll count=0;
+	for(ll i=0;i<n;i++)
+	{
+		ll j=i;
+		while(j<n&&st.count(s[j])>=1)
+			j++;
+		ll len=j-i;
+		count+=(len*(len+1))/2;
+		i=j;
+	}
+	cout<<count<<endl;
 	return 0;
 }
 
@@ -88,9 +92,9 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
-	cc
-	{
-		solve();
-	}
+	solve();
+	// cc
+	// {
+	// 	solve();
+	// }
 }

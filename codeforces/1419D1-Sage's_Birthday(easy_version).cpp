@@ -65,22 +65,49 @@ ll solve()
 {
 	ll n;
 	cin>>n;
-	vl v(n);
+	vl v(n,0);
 	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	srt(v);
+	ll left=0,right=n-1;
+	ll flag=0;
+	vl ans;
+	while(right>=left)
 	{
-		if(v[i]>=v[i-1])
-			count++;
+		if(flag==0)
+		{
+			// cout<<v[right]<<" ";
+			ans.pb(v[right]);
+			right--;
+			flag=1;
+		}
 		else
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			flag=0;
+			ans.pb(v[left]);
+			// cout<<v[left]<<" ";
+			left++;
 		}
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	ll count=0;
+	if(ans.size()<3)
+	{
+		cout<<0<<endl;
+		for(auto x:ans)
+			cout<<x<<" ";
+		line;
+	}
+	else
+	{
+		for(ll i=1;i<ans.size();i++)
+		{
+			if(ans[i]<ans[i-1]&&ans[i]<ans[i+1])
+				count++;
+		}
+		cout<<count<<endl;
+		for(auto x:ans)
+			cout<<x<<" ";
+		line;
+	}
 	return 0;
 }
 
@@ -88,9 +115,9 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
-	cc
-	{
-		solve();
-	}
+	solve();
+	// cc
+	// {
+	// 	solve();
+	// }
 }

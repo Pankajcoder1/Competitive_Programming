@@ -67,19 +67,10 @@ ll solve()
 	cin>>n;
 	vl v(n);
 	forin(v,n);
-	ll count=1;
+	srtGreat(v);
 	ll sum=0;
-	for(ll i=1;i<n;i++)
-	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
-		{
-			sum+=((count*(count+1))/2);
-			count=1;
-		}
-	}
-	sum+=((count*(count+1))/2);
+	for(ll i=0;i<n;i+=2)
+		sum+=v[i];
 	cout<<sum<<endl;
 	return 0;
 }
@@ -88,7 +79,6 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
 	cc
 	{
 		solve();

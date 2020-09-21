@@ -63,24 +63,36 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-	ll n;
-	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	ll n,q;
+	cin>>n>>q;
+	vector<string> v(n);
+	for(ll i=0;i<n;i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
+		cin>>v[i];
+	}
+	while(q--)
+	{
+		string s;
+		cin>>s;
+		if(s.length()>=47)
+			cout<<"Good"<<endl;
 		else
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			ll flag=0;
+			for(ll i=0;i<n;i++)
+			{
+				if(s.find(v[i])!=-1)
+				{
+					flag=1;
+					break;
+				}
+			}
+			if(flag)
+				cout<<"Good"<<endl;
+			else
+				cout<<"Bad"<<endl;
 		}
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
 	return 0;
 }
 
@@ -88,9 +100,5 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
-	cc
-	{
-		solve();
-	}
+	solve();
 }

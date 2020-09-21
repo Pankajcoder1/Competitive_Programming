@@ -63,24 +63,27 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-	ll n;
-	cin>>n;
+	ll n,k;
+	cin>>n>>k;
+	if(k==0)
+		k=0;
+	else if(k&1)
+		k=5;
+	else
+		k=4;
 	vl v(n);
 	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	for(ll i=1;i<=k;i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
+		ll maxo=*max_element(all(v));
+		for(ll j=0;j<n;j++)
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			v[j]=maxo-v[j];
 		}
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	for(auto x:v)
+		cout<<x<<" ";
+	line;
 	return 0;
 }
 
@@ -88,9 +91,5 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
-	cc
-	{
-		solve();
-	}
+	solve();
 }

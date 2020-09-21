@@ -65,22 +65,22 @@ ll solve()
 {
 	ll n;
 	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	ll count=0,pos=1;
+	while(1)
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
-		{
-			sum+=((count*(count+1))/2);
-			count=1;
-		}
+		if(n<=0)
+			break;
+		ll temp=power(2,pos)-1;
+		// cout<<"temp is "<<temp<<endl;
+		n-=(temp*(temp+1))/2;
+		if(n<0)
+			break;
+		count++;
+		pos++;
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	
+	cout<<count<<endl;
+	// cout<<"count is "<<count<<endl;
 	return 0;
 }
 

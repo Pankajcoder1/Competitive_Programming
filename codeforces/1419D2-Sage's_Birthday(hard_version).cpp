@@ -65,22 +65,28 @@ ll solve()
 {
 	ll n;
 	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	vector<ll> a(n),ans(n);
+	forin(a,n);
+	srt(a);
+	ll count=0;
+	ll half=n/2;
+	for(ll i=0;i<(n/2);i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
-		{
-			sum+=((count*(count+1))/2);
-			count=1;
-		}
+		ans[(2*i)+1]=a[i];
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	for(ll i=half;i<n;i++)
+	{
+		ans[(2*(i-half))]=a[i];
+	}
+	for(ll i=1;i<n-1;i++)
+	{
+		if(ans[i]<ans[i-1]&&ans[i]<ans[i+1])
+			count++;
+	}
+	cout<<count<<endl;
+	for(auto x:ans)
+		cout<<x<<" ";
+	line;
 	return 0;
 }
 
@@ -88,9 +94,5 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
-	cc
-	{
-		solve();
-	}
+	solve();
 }

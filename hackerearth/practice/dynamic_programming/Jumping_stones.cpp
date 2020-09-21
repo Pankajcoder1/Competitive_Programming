@@ -63,24 +63,22 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-	ll n;
-	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
+	ll n,k;
+	cin>>n>>k;
+	vector<ll> dp(n+1,0);
+	dp[0]=1;
 	for(ll i=1;i<n;i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
+		for(ll j=max(0LL,i-k);j<i;j++)
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			if((i-j)>=0)
+			{
+				dp[i]+=dp[j];
+				dp[i]%=mod;
+			}
 		}
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	cout<<dp[n-1]<<endl;
 	return 0;
 }
 
@@ -88,9 +86,9 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
-	cc
-	{
-		solve();
-	}
+	solve();
+	// cc
+	// {
+	// 	solve();
+	// }
 }

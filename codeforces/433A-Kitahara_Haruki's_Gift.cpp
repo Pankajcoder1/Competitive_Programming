@@ -65,22 +65,35 @@ ll solve()
 {
 	ll n;
 	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	ll temp=0,one=0,two=0;
+	for(ll i=0;i<n;i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
+		cin>>temp;
+		if(temp==100)
+			one++;
 		else
-		{
-			sum+=((count*(count+1))/2);
-			count=1;
-		}
+			two++;
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	ll sum=((two*2)+one);
+	if(sum%2==0)
+	{
+		ll flag=0;
+		sum=sum/2;
+		for(ll i=0;i<=two;i++)
+		{
+			if((2*i)<=sum&&sum-(2*i)<=one)
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag==1)
+			yes
+		else
+			no
+	}
+	else
+		no
 	return 0;
 }
 
@@ -88,9 +101,5 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
-	cc
-	{
-		solve();
-	}
+	solve();
 }

@@ -65,22 +65,65 @@ ll solve()
 {
 	ll n;
 	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	string s;
+	cin>>s;
+	vl odd,even;
+	for(ll i=0;i<n;i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
+		if((i+1)%2==0)
+		{
+			even.pb(ll(s[i]-'0'));
+		}
 		else
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			odd.pb(ll(s[i]-'0'));
 		}
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	if(odd.size()>even.size())
+	{
+		ll even_c=0,odd_c=0;
+		for(auto x:odd)
+		{
+			if(x%2==0)
+				even_c++;
+			else
+				odd_c++;
+		}
+		if(odd_c>0)
+			cout<<1<<endl;
+		else
+			cout<<2<<endl;
+	}
+	else if(odd.size()<even.size())
+	{
+		ll even_c=0,odd_c=0;
+		for(auto x:even)
+		{
+			if(x%2==0)
+				even_c++;
+			else
+				odd_c++;
+		}
+		if(even_c>0)
+			cout<<2<<endl;
+		else
+			cout<<1<<endl;
+	}
+	else if(even.size()==odd.size())
+	{
+		ll even_c=0,odd_c=0;
+		for(auto x:even)
+		{
+			if(x%2==0)
+				even_c++;
+			else
+				odd_c++;
+		}
+		if(even_c>0)
+			cout<<2<<endl;
+		else
+			cout<<1<<endl;
+	}
 	return 0;
 }
 

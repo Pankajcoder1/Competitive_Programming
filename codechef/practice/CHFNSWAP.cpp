@@ -65,22 +65,31 @@ ll solve()
 {
 	ll n;
 	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	ll x=0,sum=0,required=0;
+	sum=(n*(n+1))/2;
+	if(sum%2!=0)
+		cout<<0<<endl;
+	else
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
+		required=sum/2;
+		ll pos=0,temp_sum=0;
+		pos=(sqrt(required*2)+1);
+		while((pos*(pos+1))/2>required)
+			pos--;
+		
+		ll count=0;
+		count+=(n-pos);
+		// cout<<"count is "<<count<<Endl;
+		if(((pos*(pos+1))/2)==required)
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			ll temp1=(pos*(pos-1))/2;
+			ll temp2=((n-pos)*((n-pos)-1))/2;
+			// cout<<"temp1 is "<<temp1<<" "<<temp2<<endl;
+			count+=temp2;
+			count+=temp1;
 		}
+		cout<<count<<endl;
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
 	return 0;
 }
 
@@ -88,7 +97,6 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
 	cc
 	{
 		solve();

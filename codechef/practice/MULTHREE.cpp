@@ -63,24 +63,29 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-	ll n;
-	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	ll k,d0,d1;
+	cin>>k>>d0>>d1;
+	ll temp=d0+d1;
+	ll ans=temp;
+	ll sum=(2*temp)%10+(4*temp)%10+(8*temp)%10+(6*temp)%10;
+	k-=2;
+	if(k>0)
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
-		{
-			sum+=((count*(count+1))/2);
-			count=1;
-		}
+		ans+=(temp%10);
+		k--;
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	ans+=(k/4)*sum;
+	k%=4;
+	ll temp1=2;
+	while(k--)
+	{
+		ans+=(temp1*temp)%10;
+		temp1=(temp1*2)%10;
+	}
+	if(ans%3==0)
+		yes
+	else
+		no
 	return 0;
 }
 

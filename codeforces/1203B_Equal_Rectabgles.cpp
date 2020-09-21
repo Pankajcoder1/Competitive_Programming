@@ -13,7 +13,7 @@ typedef set<char>sc;
 typedef set<ll> sl;
 #define pan cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 // define values.
-#define mod 1000000007
+#define mod 10000009
 #define phi 1.618
 /* Bit-Stuff */
 #define get_set_bits(a) (__builtin_popcount(a))
@@ -65,22 +65,26 @@ ll solve()
 {
 	ll n;
 	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	vector<ll> v(4*n,0);
+	forin(v,(4*n));
+	srt(v);
+	ll temp=v[0]*v[(4*n)-1];
+	for(ll i=0;i<(2*n);i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
+		// cout<<v[i]<<" "<<v[i+1]<<" "<<v[(4*n)-1-i]<<" "<<v[((4*n)-2-i)]<<endl;
+		if((v[i]!=v[i+1])||(v[(4*n)-1-i])!=v[((4*n)-2-i)])
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			no
+			return 0;
 		}
+		if((v[((4*n)-1-i)]*v[i+1])!=temp||(v[i]*v[((4*n)-2-i)])!=temp)
+		{
+			no
+			return 0;
+		}
+		i++;
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	yes
 	return 0;
 }
 

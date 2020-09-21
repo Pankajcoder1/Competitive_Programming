@@ -67,20 +67,24 @@ ll solve()
 	cin>>n;
 	vl v(n);
 	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	ll prefix=0,sufix=0,pos=0,pre=LONG_MAX;
+	for(ll i=0;i<n;i++)
+		sufix+=v[i];
+
+	for(ll i=0;i<n;i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
+		prefix+=v[i];
+		if(i>=1)
+			sufix-=v[i-1];
+		ll total=prefix+sufix;
+		if(pre>total)
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			pre=total;
+			pos=i;
 		}
+		// cout<<"prefix and sufix is "<<prefix<<" "<<sufix<<Endl;
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	cout<<pos+1<<endl;
 	return 0;
 }
 
@@ -88,7 +92,6 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
 	cc
 	{
 		solve();

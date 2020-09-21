@@ -63,24 +63,32 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-	ll n;
-	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	string s;
+	cin>>s;
+	ll count=0;
+	stack<char> q;
+	for(ll i=0;i<s.length();i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
+		if(q.empty())
+		{
+			// cout<<"khali "<<Endl;
+			q.push(s[i]);
+		}
+		else if(q.top()!=s[i])
+		{
+			q.push(s[i]);
+		}
 		else
 		{
-			sum+=((count*(count+1))/2);
-			count=1;
+			q.pop();
+			count++;
 		}
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+
+	if(count&1)
+		yes
+	else
+		no
 	return 0;
 }
 
@@ -88,9 +96,5 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
-	cc
-	{
-		solve();
-	}
+	solve();
 }

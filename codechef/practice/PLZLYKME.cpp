@@ -63,24 +63,19 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-	ll n;
-	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
+	ll l,d,s,c;
+	cin>>l>>d>>s>>c;
+	ll temp=s;
+	for(ll i=2;i<=d;i++)
 	{
-		if(v[i]>=v[i-1])
-			count++;
-		else
-		{
-			sum+=((count*(count+1))/2);
-			count=1;
-		}
+		temp=temp+temp*c;
+		if(temp>=l)
+			break;
 	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	if(temp>=l)
+		cout<<"ALIVE AND KICKING"<<endl;
+	else
+		cout<<"DEAD AND ROTTING"<<endl;
 	return 0;
 }
 
@@ -88,7 +83,6 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
 	cc
 	{
 		solve();

@@ -63,24 +63,13 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-	ll n;
-	cin>>n;
-	vl v(n);
-	forin(v,n);
-	ll count=1;
-	ll sum=0;
-	for(ll i=1;i<n;i++)
-	{
-		if(v[i]>=v[i-1])
+	string s;
+	cin>>s;
+	ll count=0;
+	for(auto x:s)
+		if(x!='4'&&x!='7')
 			count++;
-		else
-		{
-			sum+=((count*(count+1))/2);
-			count=1;
-		}
-	}
-	sum+=((count*(count+1))/2);
-	cout<<sum<<endl;
+	cout<<count<<endl;
 	return 0;
 }
 
@@ -88,7 +77,6 @@ int main()
 {
 	//freopen("input.txt"a, "r", stdin);
 	pan;
-	// solve();
 	cc
 	{
 		solve();
