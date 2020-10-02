@@ -1,0 +1,34 @@
+body
+{
+	padding: 0;
+	margin: 0;
+}
+.first
+{
+	min-height: 96vh;
+}
+.list-group-item a
+{
+	font-size: 20px;
+}
+.list-group-item a:hover
+{
+	text-decoration: none;
+}
+.list-group-item:hover
+{
+	background-color: #eee;
+}
+footer
+{
+	height: 35px;
+	padding-top: 10px;
+	background-color: rgba(214, 241, 239, 0.75);
+	font-size: 15px;
+	font-weight: 200;
+	
+}
+footer p
+{
+	opacity: 0.825;
+}
