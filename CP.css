@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+
 body
 {
 	padding: 0;
 	margin: 0;
+}
+li a 
+{
+	font-family: 'Crimson Text', serif;
 }
 .first
 {
@@ -14,6 +20,7 @@ body
 .list-group-item a:hover
 {
 	text-decoration: none;
+	color: black;
 }
 .list-group-item:hover
 {
