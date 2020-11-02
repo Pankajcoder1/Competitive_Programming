@@ -1,1 +1,1 @@
-> File name of nay problem is problem code with their name.
+> File name of any problem is problem code with their name.
