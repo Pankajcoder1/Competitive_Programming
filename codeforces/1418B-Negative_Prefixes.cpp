@@ -55,7 +55,28 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-    
+    ll n;
+    cin>>n;
+    vl v(n),unblocked;
+    for(ll i=0;i<n;i++)
+    {
+        cin>>v[i];
+    }
+    vl type(n);
+    for(ll i=0;i<n;i++)
+    {
+        cin>>type[i];
+        if(type[i]==0)
+            unblocked.pb(v[i]);
+    }
+    sort(unblocked.begin(),unblocked.end(),greater<ll>());
+    ll pos=0;
+    for(ll i=0;i<n;i++)
+    {
+        if(type[i]==0)
+            v[i]=unblocked[pos++];
+    }
+    printv(v);
     return 0;
 }
 

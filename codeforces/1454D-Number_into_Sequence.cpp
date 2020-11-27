@@ -27,7 +27,6 @@ typedef vector<ll> vl;
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
 #define srtGreat(V) sort(all(V),greater<ll>())
-#define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} line;
 // function
 
 ll power(ll x,ll y,ll mod)
@@ -53,21 +52,74 @@ A=65,Z=90,a=97,z=122
 */
 /*  -----------------------------------------------------------------------------------*/
 
+ll prime(ll num)
+{
+    for(ll i=2;i<=ll(sqrt(num));i++)
+    {
+        if(num%i==0)
+            return false;
+    }
+    return true;
+}
+
 ll solve()
 {
-    
+    ll n;
+    cin>>n;
+    ll count=0;
+    ll maxo=0,ans=0;
+    for(ll i=2;i<=ll(sqrt(n));i++)
+    {
+        // cout<<"hi ";
+        count=0;
+        if(prime(i)==true)
+        {
+            ll temp=n;
+            count=0;
+            while(temp%i==0)
+            {
+                // cout<<"i "<<i<<endl;
+                temp/=i;
+                count++;
+            }
+        }
+        if(count>maxo)
+        {
+            maxo=count;
+            ans=i;
+        }
+    }
+    // cout<<"maxo is "<<maxo<<endl;
+    // cout<<maxo<<Endl;
+    if(maxo==0||maxo==1)
+    {
+        cout<<1<<endl;
+        cout<<n<<endl;
+    }
+    else
+    {
+        cout<<maxo<<endl;
+        ll pro=1;
+        for(ll i=0;i<maxo-1;i++)
+        {
+            pro*=ans;
+            cout<<ans<<" ";
+        }
+        cout<<n/pro<<endl;
+    }
     return 0;
 }
 
 int main()
 {
-    pan;
     //freopen("input.txt"a, "r", stdin);
+    pan;
     // solve();
     cc
     {
         solve();
     }
+    return 0;
 }
 
 /* stuff you should look before submission 

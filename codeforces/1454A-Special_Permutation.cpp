@@ -27,7 +27,6 @@ typedef vector<ll> vl;
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
 #define srtGreat(V) sort(all(V),greater<ll>())
-#define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} line;
 // function
 
 ll power(ll x,ll y,ll mod)
@@ -53,21 +52,38 @@ A=65,Z=90,a=97,z=122
 */
 /*  -----------------------------------------------------------------------------------*/
 
+
 ll solve()
 {
-    
+    ll n;
+    cin>>n;
+    vl ans(n+1,0);
+    ll temp=n;
+    for(ll i=1;i<=n;i++)
+    {
+        ans[i]=temp;
+        temp--;
+    }
+    if(n&1)
+    {
+        swap(ans[(n+1)/2],ans[1]);
+    }
+    for(ll i=1;i<=n;i++)
+        cout<<ans[i]<<" ";
+    line;
     return 0;
 }
 
 int main()
 {
-    pan;
     //freopen("input.txt"a, "r", stdin);
+    pan;
     // solve();
     cc
     {
         solve();
     }
+    return 0;
 }
 
 /* stuff you should look before submission 
