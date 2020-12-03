@@ -31,10 +31,12 @@ typedef vector<ll> vl;
 #define srt(V) sort(all(V))
 #define srtGreat(V) sort(all(V),greater<ll>())
 #define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} line;
+// some extra
+#define sz(V) ll(V.size())
 /* ONLINE JUDGE */
-#ifdef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
-#endif
+// #ifdef ONLINE_JUDGE
+//     freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
+// #endif
 // function
 
 ll power(ll x,ll y,ll mod)
@@ -62,7 +64,29 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-    
+    ll n;
+    cin>>n;
+    vl v(n+2,0);
+    for(ll i=1;i<=n;i++)
+        cin>>v[i];
+    v[0]=v[n];
+    v[n+1]=v[1];
+    ll mini=LONG_MAX,pos1=0,pos2=0;
+    for(ll i=1;i<=n;i++)
+    {
+        ll diff=abs(v[i]-v[i-1]);
+        if(mini>diff)
+        {
+            mini=diff;
+            pos1=i-1;
+            pos2=i;
+        }
+    }
+    if(pos1==0)
+        pos1=n;
+    if(pos2==n+1)
+        pos2=1;
+    cout<<pos1<<" "<<pos2<<endl;
     return 0;
 }
 
@@ -70,11 +94,11 @@ int main()
 {
     speed;
     //freopen("input.txt"a, "r", stdin);
-    // solve();
-    cc
-    {
-        solve();
-    }
+    solve();
+    // cc
+    // {
+    //     solve();
+    // }
 }
 
 /* stuff you should look before submission 
