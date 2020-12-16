@@ -54,15 +54,6 @@ ll power(ll x,ll y,ll mod)
     }
     return res;
 }
-ll str_to_num(string s)
-{
-    return stoi(s);
-}
-
-string num_to_str(ll num)
-{
-    return to_string(num);
-}
 // datatype definination
 #define ordered_set tree<ll,null_type,less<ll>,rb_tree_tag,tree_order_statistics_node_update>
 
@@ -73,19 +64,46 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n,k;
+    cin>>n>>k;
+    vl v(n+1,0);
+    for(ll i=1;i<=n;i++)
+    {
+        v[i]=-i;
+    }
+    for(ll i=2;i<=n;i+=2)
+    {
+        if(k>0)
+        {
+            k--;
+            v[i]=-v[i];
+        }
+    }
+    ll temp=n;
+    if(temp%2==0)
+        temp--;
+    for(ll i=temp;i>=1;i-=2)
+    {
+        if(k>0)
+        {
+            k--;
+            v[i]=-v[i];
+        }
+    }
+    for(ll i=1;i<=n;i++)
+        cout<<v[i]<<" ";
+    line;
     return 0;
 }
 
 int main()
 {
     speed;
-    // freopen("input.txt","r",stdin);
-    // freopen("output.txt","w",stdout);
-    solve();
-    // cc
-    // {
-    //     solve();
-    // }
+    //freopen("input.txt"a, "r", stdin);
+    cc
+    {
+        solve();
+    }
 }
 
 /* stuff you should look before submission 

@@ -54,15 +54,6 @@ ll power(ll x,ll y,ll mod)
     }
     return res;
 }
-ll str_to_num(string s)
-{
-    return stoi(s);
-}
-
-string num_to_str(ll num)
-{
-    return to_string(num);
-}
 // datatype definination
 #define ordered_set tree<ll,null_type,less<ll>,rb_tree_tag,tree_order_statistics_node_update>
 
@@ -70,9 +61,44 @@ string num_to_str(ll num)
 A=65,Z=90,a=97,z=122
 */
 /*  -----------------------------------------------------------------------------------*/
+bool compare(pair<ll,ll>&a ,pair<ll,ll>& b)
+{
+    if(a.ff==b.ff)
+        return a.ss<b.ss;
+    else
+        return a.ff<b.ff;
+}
 
 ll solve()
 {
+    ll n,k;
+    cin>>n>>k;
+    vector<pair<ll,ll>> v;
+    for(ll i=0;i<n;i++)
+    {
+        ll a,b;
+        cin>>a>>b;
+        v.pb({a,b});
+    }
+    // srt(v);
+    ll flag=0;
+    for(ll i=0;i<n;i++)
+    {
+        ll count=0;
+        for(ll j=0;j<n;j++)
+        {
+            if((abs(v[j].ff-v[i].ff)+abs(v[j].ss-v[i].ss))<=k)
+            {
+                count++;
+            }
+        }
+        if(count==n)
+            flag++;
+    }
+    if(flag)
+        cout<<1<<endl;
+    else
+        cout<<-1<<endl;
     return 0;
 }
 
@@ -81,11 +107,11 @@ int main()
     speed;
     // freopen("input.txt","r",stdin);
     // freopen("output.txt","w",stdout);
-    solve();
-    // cc
-    // {
-    //     solve();
-    // }
+    // solve();
+    cc
+    {
+        solve();
+    }
 }
 
 /* stuff you should look before submission 

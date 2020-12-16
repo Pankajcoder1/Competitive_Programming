@@ -73,6 +73,20 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    string s;
+    cin>>s;
+    ll count=0;
+    while(s.size()>1)
+    {
+        count++;
+        ll sum=0;
+        for(auto x:s)
+        {
+            sum+=(x-'0');
+        }
+        s=num_to_str(sum);
+    }
+    cout<<count<<endl;
     return 0;
 }
 

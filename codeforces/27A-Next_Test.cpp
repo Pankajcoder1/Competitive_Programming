@@ -73,6 +73,20 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n;
+    cin>>n;
+    vl v(n);
+    forin(v,n);
+    srt(v);
+    for(ll i=0;i<n;i++)
+    {
+        if(v[i]!=(i+1))
+        {
+            cout<<i+1<<endl;
+            return 0;
+        }
+    }
+    cout<<v[n-1]+1<<endl;
     return 0;
 }
 

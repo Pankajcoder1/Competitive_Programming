@@ -54,15 +54,6 @@ ll power(ll x,ll y,ll mod)
     }
     return res;
 }
-ll str_to_num(string s)
-{
-    return stoi(s);
-}
-
-string num_to_str(ll num)
-{
-    return to_string(num);
-}
 // datatype definination
 #define ordered_set tree<ll,null_type,less<ll>,rb_tree_tag,tree_order_statistics_node_update>
 
@@ -73,19 +64,24 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll x,y;
+    cin>>x>>y;
+    ll even1=0,odd1=0,even2=0,odd2=0;
+    even1=x/2,odd1=x-even1;
+    even2=y/2,odd2=y-even2;
+    ll ans=(even1*even2)+(odd1*odd2);
+    cout<<ans<<endl;
     return 0;
 }
 
 int main()
 {
     speed;
-    // freopen("input.txt","r",stdin);
-    // freopen("output.txt","w",stdout);
-    solve();
-    // cc
-    // {
-    //     solve();
-    // }
+    //freopen("input.txt"a, "r", stdin);
+    cc
+    {
+        solve();
+    }
 }
 
 /* stuff you should look before submission 

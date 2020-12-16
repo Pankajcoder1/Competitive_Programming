@@ -73,6 +73,13 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    double n,x,y;
+    cin>>n>>x>>y;
+    ll need=ceil((n*y)/100);
+    if(need>x)
+        cout<<abs(need-x)<<endl;
+    else
+        cout<<0<<endl;
     return 0;
 }
 

@@ -70,9 +70,32 @@ string num_to_str(ll num)
 A=65,Z=90,a=97,z=122
 */
 /*  -----------------------------------------------------------------------------------*/
+set<ll> st;
+
+void dfs(string s)
+{
+    if(sz(s)>10)
+        return ;
+    ll num=stoll(s);
+    st.insert(num);
+    dfs(s+'4');
+    dfs(s+'7');
+}
 
 ll solve()
 {
+    dfs("4");
+    dfs("7");
+    ll l,r;
+    cin>>l>>r;
+    ll sum=0;
+    for(ll i=l;i<=r;i++)
+    {
+        ll next=*(st.lower_bound(i));
+        sum+=(min(r,next)-i+1)*next;
+        i=next;
+    }
+    cout<<sum<<endl;
     return 0;
 }
 
@@ -82,10 +105,6 @@ int main()
     // freopen("input.txt","r",stdin);
     // freopen("output.txt","w",stdout);
     solve();
-    // cc
-    // {
-    //     solve();
-    // }
 }
 
 /* stuff you should look before submission 

@@ -54,15 +54,6 @@ ll power(ll x,ll y,ll mod)
     }
     return res;
 }
-ll str_to_num(string s)
-{
-    return stoi(s);
-}
-
-string num_to_str(ll num)
-{
-    return to_string(num);
-}
 // datatype definination
 #define ordered_set tree<ll,null_type,less<ll>,rb_tree_tag,tree_order_statistics_node_update>
 
@@ -73,6 +64,17 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll x,y;
+    cin>>x>>y;
+    ll sum=abs(x)+abs(y);
+    if(x>0&&y>0)
+        cout<<0<<" "<<sum<<" "<<sum<<" 0"<<endl;
+    else if(x<0 && y>0)
+        cout<<"-"<<sum<<" 0 0 "<<sum<<endl;
+    else if(x<0 && y<0)
+        cout<<"-"<<sum<<" 0 0 -"<<sum<<endl;
+    else
+        cout<<"0 -"<<sum<<" "<<sum<<" "<<0<<endl;
     return 0;
 }
 

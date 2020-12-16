@@ -54,15 +54,6 @@ ll power(ll x,ll y,ll mod)
     }
     return res;
 }
-ll str_to_num(string s)
-{
-    return stoi(s);
-}
-
-string num_to_str(ll num)
-{
-    return to_string(num);
-}
 // datatype definination
 #define ordered_set tree<ll,null_type,less<ll>,rb_tree_tag,tree_order_statistics_node_update>
 
@@ -73,6 +64,15 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n,k;
+    cin>>n>>k;
+    vl v(n);
+    for(ll i=0;i<n;i++)
+    {
+        v[i]=i+1;
+    }
+    reverse(v.begin(),v.begin()+k+1);
+    printv(v);
     return 0;
 }
 

@@ -54,15 +54,6 @@ ll power(ll x,ll y,ll mod)
     }
     return res;
 }
-ll str_to_num(string s)
-{
-    return stoi(s);
-}
-
-string num_to_str(ll num)
-{
-    return to_string(num);
-}
 // datatype definination
 #define ordered_set tree<ll,null_type,less<ll>,rb_tree_tag,tree_order_statistics_node_update>
 
@@ -73,6 +64,46 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    string s;
+    cin>>s;
+    ll ab=sz(s),ba=sz(s);
+    for(ll i=0;i+1<sz(s);i++)
+    {
+        if(s[i]=='A'&&s[i+1]=='B')
+        {
+            ab=i;
+            break;
+        }
+    }
+    for(ll i=0;i+1<sz(s);i++)
+    {
+        if(s[i]=='B'&&s[i+1]=='A')
+        {
+            ba=i;
+            break;
+        }
+    }
+    ll flag=0;
+    for(ll i=ab+2;i+1<sz(s);i++)
+    {
+        if(s[i]=='B'&&s[i+1]=='A')
+        {
+            flag++;
+            break;
+        }
+    }
+    for(ll i=ba+2;i+1<sz(s);i++)
+    {
+        if(s[i]=='A'&&s[i+1]=='B')
+        {
+            flag++;
+            break;
+        }
+    }
+    if(flag)
+        yes
+    else
+        no
     return 0;
 }
 
@@ -82,10 +113,6 @@ int main()
     // freopen("input.txt","r",stdin);
     // freopen("output.txt","w",stdout);
     solve();
-    // cc
-    // {
-    //     solve();
-    // }
 }
 
 /* stuff you should look before submission 

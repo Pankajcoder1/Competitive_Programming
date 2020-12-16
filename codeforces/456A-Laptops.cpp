@@ -73,6 +73,22 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n;
+    cin>>n;
+    ll v[n][2];
+    for(ll i=0;i<n;i++)
+    {
+        cin>>v[i][0]>>v[i][1];
+    }
+    for(ll i=0;i<n;i++)
+    {
+        if(v[i][0]<v[i][1])
+        {
+            cout<<"Happy Alex"<<endl;
+            return 0;
+        }
+    }
+    cout<<"Poor Alex"<<endl;
     return 0;
 }
 

@@ -54,6 +54,7 @@ ll power(ll x,ll y,ll mod)
     }
     return res;
 }
+
 ll str_to_num(string s)
 {
     return stoi(s);
@@ -73,6 +74,33 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    string s1,s2;
+    cin>>s1>>s2;
+    ll ans1=str_to_num(s1)+str_to_num(s2);
+    string temp1=num_to_str(ans1),temp2="";
+    for(auto x:temp1)
+    {
+        if(x!='0')
+            temp2+=x;
+    }
+    ans1=str_to_num(temp2);
+    temp1="",temp2="";
+    for(auto x:s1)
+    {
+        if(x!='0')
+            temp1+=x;
+    }
+    for(auto x:s2)
+    {
+        if(x!='0')
+            temp2+=x;
+    }
+    s1=temp1,s2=temp2;
+    ll ans2=str_to_num(s1)+str_to_num(s2);
+    if(ans2==ans1)
+        yes
+    else
+        no
     return 0;
 }
 
