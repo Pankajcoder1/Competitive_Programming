@@ -32,10 +32,6 @@ typedef vector<ll> vl;
 #define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} line;
 // some extra
 #define sz(V) ll(V.size())
-/* ONLINE JUDGE */
-// #ifdef ONLINE_JUDGE
-//     freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
-// #endif
 // template
 template <typename T>
 T mymax(T x,T y)
@@ -75,55 +71,54 @@ string num_to_str(ll num)
 A=65,Z=90,a=97,z=122
 */
 /*  -----------------------------------------------------------------------------------*/
-ll kadane(int arr[], int size)
-{
-    ll maximum = INT_MIN;
-    ll max_so_far = 0;
-    ll best_so_far = 0;
-    for (int i = 0; i < size; i++)
-    {
-        if(arr[i] > maximum)
-        {
-          maximum = arr[i];
-        }
-        max_so_far += arr[i];
-        if(max_so_far < 0){
-          max_so_far = 0;
-        }
-        if(max_so_far > best_so_far){
-          best_so_far = max_so_far;
-        }
-    }
-    return (best_so_far>0)? best_so_far: maximum;
-}
+
 ll solve()
 {
-    int n,k;
-    cin>>n>>k;
-    int arr[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
-    ll kadaneSum = kadane(arr, n);
-    if(k == 1){
-      cout<<kadaneSum<<endl;
+    vl prime(100400,0);
+    for(ll i=2;i<=100400;i++)
+    {
+        if(prime[i]==0)
+        {
+            for(ll j=i*i;j<=100400;j+=i)
+                prime[j]++;
+        }
     }
-    else{
-      ll totalSum = 0,leftSum = INT_MIN,rightSum = INT_MIN;
-      for(int i=0;i<n;i++){
-        totalSum += arr[i];
-        leftSum = max(leftSum, totalSum);
-      }
-      totalSum = 0;
-      for(int i=n-1;i>=0;i--){
-        totalSum += arr[i];
-        rightSum = max(rightSum, totalSum);
-      }
-      if(totalSum < 0){
-        cout<<max(leftSum + rightSum, kadaneSum)<<endl;
-      }
-      else{
-        cout<<((leftSum + rightSum + (totalSum * (k-2))))<<endl;
-      }
+    vl ans;
+    for(ll i=2;i<=100400;i++)
+    {
+        if(prime[i]==0)
+            ans.pb(i);
     }
+    ll n,m;
+    cin>>n>>m;
+    ll mini=LONG_MAX,count=0;
+    vector<vector<ll>> matrix(n,vector<ll>(m,0));
+    for(ll i=0;i<n;i++)
+    {
+        for(ll j=0;j<m;j++)
+        {
+            cin>>matrix[i][j];
+        }
+    }
+    for(ll i=0;i<n;i++)
+    {
+        count=0;
+        for(ll j=0;j<m;j++)
+        {
+            count+=(*lower_bound(all(ans),matrix[i][j])-matrix[i][j]);
+        }
+        mini=min(count,mini);
+    }
+    for(ll i=0;i<m;i++)
+    {
+        count=0;
+        for(ll j=0;j<n;j++)
+        {
+            count+=(*lower_bound(all(ans),matrix[j][i])-matrix[j][i]);
+        }
+        mini=min(count,mini);
+    }
+    cout<<mini<<endl;
     return 0;
 }
 
@@ -133,7 +128,7 @@ int main()
     // freopen("input.txt","r",stdin);
     // freopen("output.txt","w",stdout);
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

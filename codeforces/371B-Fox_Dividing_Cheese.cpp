@@ -75,55 +75,50 @@ string num_to_str(ll num)
 A=65,Z=90,a=97,z=122
 */
 /*  -----------------------------------------------------------------------------------*/
-ll kadane(int arr[], int size)
-{
-    ll maximum = INT_MIN;
-    ll max_so_far = 0;
-    ll best_so_far = 0;
-    for (int i = 0; i < size; i++)
-    {
-        if(arr[i] > maximum)
-        {
-          maximum = arr[i];
-        }
-        max_so_far += arr[i];
-        if(max_so_far < 0){
-          max_so_far = 0;
-        }
-        if(max_so_far > best_so_far){
-          best_so_far = max_so_far;
-        }
-    }
-    return (best_so_far>0)? best_so_far: maximum;
-}
+
 ll solve()
 {
-    int n,k;
-    cin>>n>>k;
-    int arr[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
-    ll kadaneSum = kadane(arr, n);
-    if(k == 1){
-      cout<<kadaneSum<<endl;
+    ll a,b;
+    cin>>a>>b;
+    vl va,vb;
+    ll count=0;
+    map<ll,ll> m;
+    while(a%2==0)
+    {
+        m[2]++;
+        a/=2;
     }
-    else{
-      ll totalSum = 0,leftSum = INT_MIN,rightSum = INT_MIN;
-      for(int i=0;i<n;i++){
-        totalSum += arr[i];
-        leftSum = max(leftSum, totalSum);
-      }
-      totalSum = 0;
-      for(int i=n-1;i>=0;i--){
-        totalSum += arr[i];
-        rightSum = max(rightSum, totalSum);
-      }
-      if(totalSum < 0){
-        cout<<max(leftSum + rightSum, kadaneSum)<<endl;
-      }
-      else{
-        cout<<((leftSum + rightSum + (totalSum * (k-2))))<<endl;
-      }
+    while(a%3==0)
+    {
+        m[3]++;
+        a/=3;
     }
+    while(a%5==0)
+    {
+        a/=5;
+        m[5]++;
+    }
+    while(b%2==0)
+    {
+        m[2]--;
+        b/=2;
+    }
+    while(b%3==0)
+    {
+        m[3]--;
+        b/=3;
+    }
+    while(b%5==0)
+    {
+        b/=5;
+        m[5]--;
+    }
+    if(a!=b)
+    {
+        cout<<-1<<endl;
+        return 0;
+    }
+    cout<<abs(m[2])+abs(m[3])+abs(m[5])<<endl;
     return 0;
 }
 
@@ -133,7 +128,7 @@ int main()
     // freopen("input.txt","r",stdin);
     // freopen("output.txt","w",stdout);
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

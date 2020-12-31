@@ -75,54 +75,58 @@ string num_to_str(ll num)
 A=65,Z=90,a=97,z=122
 */
 /*  -----------------------------------------------------------------------------------*/
-ll kadane(int arr[], int size)
-{
-    ll maximum = INT_MIN;
-    ll max_so_far = 0;
-    ll best_so_far = 0;
-    for (int i = 0; i < size; i++)
-    {
-        if(arr[i] > maximum)
-        {
-          maximum = arr[i];
-        }
-        max_so_far += arr[i];
-        if(max_so_far < 0){
-          max_so_far = 0;
-        }
-        if(max_so_far > best_so_far){
-          best_so_far = max_so_far;
-        }
-    }
-    return (best_so_far>0)? best_so_far: maximum;
-}
+
 ll solve()
 {
-    int n,k;
-    cin>>n>>k;
-    int arr[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
-    ll kadaneSum = kadane(arr, n);
-    if(k == 1){
-      cout<<kadaneSum<<endl;
+    ll king,queen,rooks,bishop,knight,pawns;
+    cin>>king>>queen>>rooks>>bishop>>knight>>pawns;
+    if(king==1)
+        cout<<0<<" ";
+    else
+    {
+        if(king>1)
+            cout<<"-";
+        cout<<abs(king-1)<<" ";
     }
-    else{
-      ll totalSum = 0,leftSum = INT_MIN,rightSum = INT_MIN;
-      for(int i=0;i<n;i++){
-        totalSum += arr[i];
-        leftSum = max(leftSum, totalSum);
-      }
-      totalSum = 0;
-      for(int i=n-1;i>=0;i--){
-        totalSum += arr[i];
-        rightSum = max(rightSum, totalSum);
-      }
-      if(totalSum < 0){
-        cout<<max(leftSum + rightSum, kadaneSum)<<endl;
-      }
-      else{
-        cout<<((leftSum + rightSum + (totalSum * (k-2))))<<endl;
-      }
+    if(queen==1)
+        cout<<0<<" ";
+    else
+    {
+        if(queen>1)
+            cout<<"-";
+        cout<<abs(queen-1)<<" ";
+    }
+    if(rooks==2)
+        cout<<0<<" ";
+    else
+    {
+        if(rooks>2)
+            cout<<"-";
+        cout<<abs(rooks-2)<<" ";
+    }
+    if(bishop==2)
+        cout<<0<<" ";
+    else
+    {
+        if(bishop>2)
+            cout<<"-";
+        cout<<abs(bishop-2)<<" ";
+    }
+    if(knight==2)
+        cout<<0<<" ";
+    else
+    {
+        if(knight>2)
+            cout<<"-";
+        cout<<abs(knight-2)<<" ";
+    }
+    if(pawns==8)
+        cout<<0<<" ";
+    else
+    {
+        if(pawns>8)
+            cout<<"-";
+        cout<<abs(pawns-8)<<" ";
     }
     return 0;
 }
@@ -133,7 +137,7 @@ int main()
     // freopen("input.txt","r",stdin);
     // freopen("output.txt","w",stdout);
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

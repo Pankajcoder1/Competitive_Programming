@@ -75,54 +75,47 @@ string num_to_str(ll num)
 A=65,Z=90,a=97,z=122
 */
 /*  -----------------------------------------------------------------------------------*/
-ll kadane(int arr[], int size)
+ll fac(ll n)
 {
-    ll maximum = INT_MIN;
-    ll max_so_far = 0;
-    ll best_so_far = 0;
-    for (int i = 0; i < size; i++)
-    {
-        if(arr[i] > maximum)
-        {
-          maximum = arr[i];
-        }
-        max_so_far += arr[i];
-        if(max_so_far < 0){
-          max_so_far = 0;
-        }
-        if(max_so_far > best_so_far){
-          best_so_far = max_so_far;
-        }
-    }
-    return (best_so_far>0)? best_so_far: maximum;
+    ll ans=1;
+    for(ll i=2;i<=n;i++)
+        ans*=i;
+    return ans;
 }
+
 ll solve()
 {
-    int n,k;
-    cin>>n>>k;
-    int arr[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
-    ll kadaneSum = kadane(arr, n);
-    if(k == 1){
-      cout<<kadaneSum<<endl;
+    string s1,s2;
+    cin>>s1>>s2;
+    ll plus1=0,plus2=0,minus1=0,minus2=0,unknown=0;
+    for(auto x:s1)
+    {
+        if(x=='+')
+            plus1++;
+        else
+            minus1++;
     }
-    else{
-      ll totalSum = 0,leftSum = INT_MIN,rightSum = INT_MIN;
-      for(int i=0;i<n;i++){
-        totalSum += arr[i];
-        leftSum = max(leftSum, totalSum);
-      }
-      totalSum = 0;
-      for(int i=n-1;i>=0;i--){
-        totalSum += arr[i];
-        rightSum = max(rightSum, totalSum);
-      }
-      if(totalSum < 0){
-        cout<<max(leftSum + rightSum, kadaneSum)<<endl;
-      }
-      else{
-        cout<<((leftSum + rightSum + (totalSum * (k-2))))<<endl;
-      }
+    for(auto x:s2)
+    {
+        if(x=='+')
+            plus2++;
+        else if(x=='-')
+            minus2++;
+        else
+            unknown++;
+    }
+    cout << fixed << setprecision(12);
+    if(plus2>plus1 or minus2>minus1)
+        cout<<0.0<<endl;
+    else
+    {
+        ll total=pow(2,unknown);
+        ll arrangement=fac(unknown);
+        ll similar_plus=fac(plus1-plus2);
+        ll similar_minus=fac(minus1-minus2);
+        ll selected=(arrangement)/(similar_plus*similar_minus);
+        double ans=(double)selected/total;
+        cout<<ans<<endl;
     }
     return 0;
 }
@@ -133,7 +126,6 @@ int main()
     // freopen("input.txt","r",stdin);
     // freopen("output.txt","w",stdout);
     ll TestCase=1;
-    cin>>TestCase;
     while(TestCase--)
     {
         solve();

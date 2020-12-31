@@ -75,55 +75,16 @@ string num_to_str(ll num)
 A=65,Z=90,a=97,z=122
 */
 /*  -----------------------------------------------------------------------------------*/
-ll kadane(int arr[], int size)
-{
-    ll maximum = INT_MIN;
-    ll max_so_far = 0;
-    ll best_so_far = 0;
-    for (int i = 0; i < size; i++)
-    {
-        if(arr[i] > maximum)
-        {
-          maximum = arr[i];
-        }
-        max_so_far += arr[i];
-        if(max_so_far < 0){
-          max_so_far = 0;
-        }
-        if(max_so_far > best_so_far){
-          best_so_far = max_so_far;
-        }
-    }
-    return (best_so_far>0)? best_so_far: maximum;
-}
+#define maxn 100001
+vector<ll>prime(maxn,0);
+vector<vector<ll>> dp(maxn,vector<ll>(6,0));
+
 ll solve()
 {
-    int n,k;
-    cin>>n>>k;
-    int arr[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
-    ll kadaneSum = kadane(arr, n);
-    if(k == 1){
-      cout<<kadaneSum<<endl;
-    }
-    else{
-      ll totalSum = 0,leftSum = INT_MIN,rightSum = INT_MIN;
-      for(int i=0;i<n;i++){
-        totalSum += arr[i];
-        leftSum = max(leftSum, totalSum);
-      }
-      totalSum = 0;
-      for(int i=n-1;i>=0;i--){
-        totalSum += arr[i];
-        rightSum = max(rightSum, totalSum);
-      }
-      if(totalSum < 0){
-        cout<<max(leftSum + rightSum, kadaneSum)<<endl;
-      }
-      else{
-        cout<<((leftSum + rightSum + (totalSum * (k-2))))<<endl;
-      }
-    }
+    ll a,b,k;
+    cin>>a>>b>>k;
+    assert(a>=2&&a<maxn);
+    cout<<dp[b][k]-dp[a-1][k]<<endl;
     return 0;
 }
 
@@ -134,6 +95,23 @@ int main()
     // freopen("output.txt","w",stdout);
     ll TestCase=1;
     cin>>TestCase;
+    for(ll i=2;i<maxn;i++)
+    {
+        if(prime[i]==0)
+        {
+            for(ll j=i;j<maxn;j+=i)
+            {
+                prime[j]++;
+            }
+        }
+    }
+    for(ll i=2;i<maxn;i++)
+    {
+        for(ll j=1;j<6;j++)
+        {
+            dp[i][j]=dp[i-1][j]+(prime[i]==j?1:0);
+        }
+    }
     while(TestCase--)
     {
         solve();
