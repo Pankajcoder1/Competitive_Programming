@@ -81,6 +81,18 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n;
+    cin>>n;
+    ll temp=2;
+    ll sum=1,count=0;
+    while(n>=sum)
+    {
+        n-=sum;
+        count++;
+        sum+=temp;
+        temp++;
+    }
+    cout<<count<<endl;
     return 0;
 }
 
@@ -92,7 +104,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

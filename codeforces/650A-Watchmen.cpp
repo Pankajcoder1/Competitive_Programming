@@ -81,6 +81,24 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n;
+    cin>>n;
+    unordered_map<ll,ll> m1,m2;
+    map<pair<ll,ll>,ll> m;
+    vl x(n),y(n);
+    ll ans=0;
+    for(ll i=0;i<n;i++)
+    {
+        cin>>x[i]>>y[i];
+    }
+    for(ll i=0;i<n;i++)
+    {
+        ans+=m1[x[i]]+m2[y[i]]-m[{x[i],y[i]}];
+        m1[x[i]]++;
+        m2[y[i]]++;
+        m[{x[i],y[i]}]++;
+    }
+    cout<<ans<<endl;
     return 0;
 }
 
@@ -92,7 +110,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

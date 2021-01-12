@@ -81,6 +81,20 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n;
+    cin>>n;
+    vl v(n),v2(n);
+    forin(v,n);
+    forin(v2,n);
+    ll sum=0;
+    for(ll i=0;i<n;i++)
+    {
+        sum+=(v[i]*v2[i]);
+    }
+    if(sum==0)
+        cout<<"Yes"<<endl;
+    else
+        cout<<"No"<<endl;
     return 0;
 }
 
@@ -92,7 +106,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

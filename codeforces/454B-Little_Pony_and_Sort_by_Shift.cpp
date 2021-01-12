@@ -81,6 +81,30 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n;
+    cin>>n;
+    vl v(n);
+    forin(v,n);
+    ll ans=0,pos=0;
+    for(ll i=1;i<n;i++)
+    {
+        if(v[i-1]>v[i])
+        {
+            ans++;
+            pos=i;
+        }
+    }
+    if(ans==0)
+        cout<<0<<endl;
+    else if(ans>1)
+        cout<<-1<<endl;
+    else if(ans==1)
+    {
+        if(v[0]>=v[n-1])
+            cout<<n-pos<<endl;
+        else
+            cout<<-1<<endl;
+    }
     return 0;
 }
 
@@ -92,7 +116,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

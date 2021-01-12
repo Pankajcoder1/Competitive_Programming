@@ -39,15 +39,15 @@ T mymax(T x,T y)
 ll power(ll x,ll y,ll mod)
 {
     ll res=1;
-    // x=x%mod;
+    x=x%mod;
     while(y>0)
     {
         if(y%2==1)
         {
             res*=x;
-            // res=res%mod;
+            res=res%mod;
         }
-        y/=2; x*=x; // x=x%mod;
+        y/=2; x*=x; x=x%mod;
     }
     return res;
 }
@@ -81,6 +81,11 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n,m;
+    cin>>n>>m;
+    ll ans=power(10,n,(m*m));
+    ans/=m;
+    cout<<ans%m<<endl;
     return 0;
 }
 
@@ -92,7 +97,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

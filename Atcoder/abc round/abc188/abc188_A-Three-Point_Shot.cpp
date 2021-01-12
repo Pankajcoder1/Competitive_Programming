@@ -81,6 +81,12 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll x,y;
+    cin>>x>>y;
+    if(abs(x-y)<3)
+        cout<<"Yes"<<endl;
+    else
+        cout<<"No"<<endl;
     return 0;
 }
 
@@ -92,7 +98,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

@@ -81,6 +81,29 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
+    ll n;
+    cin>>n;
+    n=pow(2,n);
+    n=n/2;
+    vector<pair<ll,ll>> v1,v2;
+    for(ll i=0;i<n;i++)
+    {
+        ll temp;
+        cin>>temp;
+        v1.pb({temp,i+1});
+    }
+    for(ll i=0;i<n;i++)
+    {
+        ll temp;
+        cin>>temp;
+        v2.pb({temp,i+1+n});
+    }
+    srt(v1);
+    srt(v2);
+    if(v1[n-1].ff>v2[n-1].ff)
+        cout<<v2[n-1].ss<<endl;
+    else
+        cout<<v1[n-1].ss<<endl;
     return 0;
 }
 
@@ -92,7 +115,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();
