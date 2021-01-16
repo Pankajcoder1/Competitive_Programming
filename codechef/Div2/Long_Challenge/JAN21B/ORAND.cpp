@@ -4,7 +4,7 @@
 */
 #include<bits/stdc++.h>
 using namespace std;
-
+// partially accepted
 int solve()
 {
     int n,m;

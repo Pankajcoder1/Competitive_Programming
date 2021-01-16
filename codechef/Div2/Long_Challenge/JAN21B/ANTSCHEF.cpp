@@ -1,10 +1,10 @@
-/*
-    written by Pankaj Kumar.
-    country:-INDIA
-*/
+//
+//   written by Pankaj Kumar.
+//   country:-INDIA
+//
 #include<bits/stdc++.h>
 using namespace std;
-
+// partially accpeted
 long long solve()
 {
     long long m;
