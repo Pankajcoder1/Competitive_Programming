@@ -1,6 +1,7 @@
 /*
     written by Pankaj Kumar.
     country:-INDIA
+    Institute: National Institute of Technology, Uttarakhand
 */
 #include<bits/stdc++.h>
 using namespace std;
