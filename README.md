@@ -7,7 +7,7 @@ Contain file of my [competitive programming](https://en.wikipedia.org/wiki/Compe
 - [Atcoder](https://atcoder.jp/home)
 - [CSES](https://cses.fi/problemset/)
 - [Facebook hacker cup](https://www.facebook.com/codingcompetitions/hacker-cup)
-- [open kattis](https://open.kattis.com/)
+- [Open Kattis](https://open.kattis.com/)
 
 
 Executable codes to contest problems in [c++](https://medium.com/sololearn/reasons-to-love-c-11c7c2f23d88)
