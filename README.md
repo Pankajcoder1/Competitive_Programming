@@ -1,13 +1,20 @@
-# competitive_programming
+## Competitive_programming
 Contain file of my [competitive programming](https://en.wikipedia.org/wiki/Competitive_programming) including some platform like..
 - [Codeforces](https://codeforces.com/)
 - [Codechef](https://www.codechef.com/)
-- [Hackerrank](https://www.hackerrank.com/)
-- [Hackerearth](https://www.hackerearth.com/)
+- [Leetcode](https://leetcode.com/)
 - [Atcoder](https://atcoder.jp/home)
+- [Kick Start](https://codingcompetitions.withgoogle.com/kickstart)
+- [Hackerearth](https://www.hackerearth.com/)
+- [Hackerrank](https://www.hackerrank.com/)
+- [Spoj](https://www.spoj.com/)
+- [Timus](https://acm.timus.ru/problemset.aspx)
 - [CSES](https://cses.fi/problemset/)
 - [Facebook hacker cup](https://www.facebook.com/codingcompetitions/hacker-cup)
 - [Open Kattis](https://open.kattis.com/)
+---
 
-
-Executable codes to contest problems in [c++](https://medium.com/sololearn/reasons-to-love-c-11c7c2f23d88)
+## Name convention of file
+> Name of any file is combination of question name,quesion id, contest id..  depend on platform.
+---
+I write code in [c++](https://medium.com/sololearn/reasons-to-love-c-11c7c2f23d88).
