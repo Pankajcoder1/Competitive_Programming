@@ -21,8 +21,8 @@ typedef vector<ll> vl;
 // loops
 #define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
+#define no cout<<"No"<<endl;
+#define yes cout<<"Yes"<<endl;
 // sort
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
@@ -81,28 +81,49 @@ A=65,Z=90,a=97,z=122
 /*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
 
+ll dfs(vector<vector<ll>>& graph,ll node,ll n,vector<bool>& check){
+    if(node>n)
+        return 0;
+    if(check[node]==true)
+        return 0;
+    check[node]=true;
+    for(auto x:graph[node]){
+        dfs(graph,x,n,check);
+    }
+    return 0;
+}
+
 ll solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vl v(n+1),a(n+1);
+    ll n,m;
+    cin>>n>>m;
+    vector<pair<ll,ll>> c(n+1);
+    vector<bool> check(n+1,false);
     for(ll i=1;i<=n;i++){
-        cin>>v[i];
-        a[i]=v[i];
+        ll temp;
+        cin>>temp;
+        c[i]={temp,i};
     }
-    srt(a);
-    for(ll i=1;i<=k;i++){
-        set<ll>s1,s2;
-        for(ll j=i;j<=n;j+=k){
-            s1.insert(a[j]);
-            s2.insert(v[j]);
-        }
-        if(s1!=s2){
-            cout<<"no"<<endl;
-            return 0;
+
+    srt(c);
+
+    vector<vector<ll>> graph(n+1,vector<ll>());
+    for(ll i=1;i<=m;i++){
+        ll u,v;
+        cin>>u>>v;
+        graph[u].pb(v);
+        graph[v].pb(u);
+    }
+
+    ll ans=0;
+    for(ll i=1;i<=n;i++){
+        ll pos=c[i].ss;
+        if(check[pos]==false){
+            ans+=c[i].ff;
+            dfs(graph,pos,n,check);
         }
     }
-    cout<<"yes"<<endl;
+    cout<<ans<<endl;
     return 0;
 }
 
@@ -114,7 +135,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

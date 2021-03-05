@@ -21,8 +21,8 @@ typedef vector<ll> vl;
 // loops
 #define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
+#define no cout<<"No"<<endl;
+#define yes cout<<"Yes"<<endl;
 // sort
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
@@ -85,24 +85,40 @@ ll solve()
 {
     ll n,k;
     cin>>n>>k;
-    vl v(n+1),a(n+1);
-    for(ll i=1;i<=n;i++){
-        cin>>v[i];
-        a[i]=v[i];
-    }
-    srt(a);
-    for(ll i=1;i<=k;i++){
-        set<ll>s1,s2;
-        for(ll j=i;j<=n;j+=k){
-            s1.insert(a[j]);
-            s2.insert(v[j]);
+    queue<ll> q;
+    vl v(n);
+    forin(v,n);
+    set<ll> s;
+    for(ll i=0;i<n;i++){
+        if(s.find(v[i])!=s.end()){
+            continue;
         }
-        if(s1!=s2){
-            cout<<"no"<<endl;
-            return 0;
+        else{
+            if(sz(q)>=k){
+                while(sz(q)>=k){
+                    ll temp=q.front();
+                    q.pop();
+                    s.erase(s.find(temp));
+                }
+                s.insert(v[i]);
+                q.push(v[i]);
+            }
+            else{
+                s.insert(v[i]);
+                q.push(v[i]);
+            }
         }
     }
-    cout<<"yes"<<endl;
+    cout<<sz(q)<<endl;
+    vl ans;
+    while(sz(q)){
+        ans.pb(q.front());
+        q.pop();
+    }
+    reverse(all(ans));
+    for(auto x:ans)
+        cout<<x<<" ";
+    line;
     return 0;
 }
 
@@ -114,7 +130,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

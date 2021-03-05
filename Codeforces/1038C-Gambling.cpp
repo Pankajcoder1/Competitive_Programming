@@ -80,29 +80,47 @@ A=65,Z=90,a=97,z=122
 */
 /*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
+const ll N=1e5+5;
+ll a[N],b[N];
 
 ll solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vl v(n+1),a(n+1);
-    for(ll i=1;i<=n;i++){
-        cin>>v[i];
-        a[i]=v[i];
-    }
-    srt(a);
-    for(ll i=1;i<=k;i++){
-        set<ll>s1,s2;
-        for(ll j=i;j<=n;j+=k){
-            s1.insert(a[j]);
-            s2.insert(v[j]);
+    ll n;
+    cin>>n;
+    for(ll i=1;i<=n;i++)
+        cin>>a[i];
+    for(ll i=1;i<=n;i++)
+        cin>>b[i];
+    sort(a+1,a+n+1);
+    sort(b+1,b+n+1);
+    reverse(a+1,a+n+1);
+    reverse(b+1,b+n+1);
+    ll pos1=1,pos2=1,flag=0;
+    ll asum=0,bsum=0;
+    while(1){
+        if(pos1>n&&pos2>n)
+            break;
+        else{
+            if(!flag){
+                if(a[pos1]>=b[pos2]){
+                    asum+=a[pos1];
+                    pos1++;
+                }
+                else
+                    pos2++;
+            }
+            else{
+                if(b[pos2]>=a[pos1]){
+                    bsum+=b[pos2];
+                    pos2++;
+                }
+                else
+                    pos1++;
+            }
+            flag^=1;
         }
-        if(s1!=s2){
-            cout<<"no"<<endl;
-            return 0;
-        }
     }
-    cout<<"yes"<<endl;
+    cout<<asum-bsum<<endl;
     return 0;
 }
 
@@ -114,7 +132,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

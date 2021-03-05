@@ -83,26 +83,74 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vl v(n+1),a(n+1);
-    for(ll i=1;i<=n;i++){
-        cin>>v[i];
-        a[i]=v[i];
-    }
-    srt(a);
-    for(ll i=1;i<=k;i++){
-        set<ll>s1,s2;
-        for(ll j=i;j<=n;j+=k){
-            s1.insert(a[j]);
-            s2.insert(v[j]);
+    string s;
+    cin>>s;
+    ll n=sz(s);
+    if(s[0]==s[n-1])
+        no
+    else
+    {
+        ll ch1=s[0],ch2=s[n-1];
+        for(ll i=0;i<n;i++)
+        {
+            if(s[i]==ch1)
+                s[i]='(';
+            else if(s[i]==ch2)
+                s[i]=')';
         }
-        if(s1!=s2){
-            cout<<"no"<<endl;
+        string s1=s,s2=s;
+        for(ll i=0;i<n;i++)
+        {
+            if(s1[i]!='('&&s1[i]!=')')
+                s1[i]='(';
+        }
+        for(ll i=0;i<n;i++)
+        {
+            if(s2[i]!='('&&s2[i]!=')')
+                s2[i]=')';
+        }
+        ll flag=0;
+        ll ans=0;
+        // cout<<"ss "<<s1<<" "<<s2<<endl;
+        for(auto x:s1)
+        {
+            if(x=='(')
+                ans++;
+            else
+                ans--;
+            if(ans<0)
+                flag++;
+        }
+        if(flag==0&&ans==0)
+        {
+            yes
             return 0;
         }
+        else
+        {
+            ans=0;
+            flag=0;
+            for(auto x:s2)
+            {
+                if(x=='(')
+                    ans++;
+                else
+                    ans--;
+                if(ans<0)
+                {
+                    no
+                    return 0;
+                }
+            }
+            if(ans>0)
+            {
+                // cout<<"hi 2"<<endl;
+                no
+                return 0;
+            }
+        }
+        yes
     }
-    cout<<"yes"<<endl;
     return 0;
 }
 

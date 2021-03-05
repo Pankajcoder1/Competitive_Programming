@@ -83,26 +83,32 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vl v(n+1),a(n+1);
-    for(ll i=1;i<=n;i++){
-        cin>>v[i];
-        a[i]=v[i];
+    ll n;
+    cin>>n;
+    vector<pair<ll,ll>> v(n);
+    vl mini_v(n);
+    ll mini=LONG_MAX;
+    for(ll i=0;i<n;i++){
+        ll temp;
+        cin>>temp;
+        v[i]={temp,i+1};
     }
-    srt(a);
-    for(ll i=1;i<=k;i++){
-        set<ll>s1,s2;
-        for(ll j=i;j<=n;j+=k){
-            s1.insert(a[j]);
-            s2.insert(v[j]);
-        }
-        if(s1!=s2){
-            cout<<"no"<<endl;
-            return 0;
-        }
+
+    srt(v);
+    for(ll i=0;i<n;i++){
+        mini=min(mini,v[i].ss);
+        mini_v[i]=mini;
     }
-    cout<<"yes"<<endl;
+    ll sum=0;
+    for(ll i=0;i<n;i++){
+        sum+=v[i].ss;
+        ll temp=(i*(i+1))/2;
+        if((sum-temp)%(i+1)==0&&((sum-temp)/(i+1))==mini_v[i])
+            cout<<"1";
+        else
+            cout<<"0";
+    }
+    line;
     return 0;
 }
 

@@ -21,8 +21,8 @@ typedef vector<ll> vl;
 // loops
 #define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
+#define no cout<<"No"<<endl;
+#define yes cout<<"Yes"<<endl;
 // sort
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
@@ -83,26 +83,44 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vl v(n+1),a(n+1);
-    for(ll i=1;i<=n;i++){
-        cin>>v[i];
-        a[i]=v[i];
+    ll n;
+    cin>>n;
+    vector<ll> bit(33,0);
+    ll temp=n,pos=0;
+    while(temp){
+        bit[pos]=temp%3;
+        temp/=3;
+        pos++;
     }
-    srt(a);
-    for(ll i=1;i<=k;i++){
-        set<ll>s1,s2;
-        for(ll j=i;j<=n;j+=k){
-            s1.insert(a[j]);
-            s2.insert(v[j]);
-        }
-        if(s1!=s2){
-            cout<<"no"<<endl;
-            return 0;
+    // printv(bit);
+    ll two=0,two_pos=-1;
+    for(ll i=0;i<32;i++){
+        if(bit[i]==2){
+            two++;
+            two_pos=i;
         }
     }
-    cout<<"yes"<<endl;
+    if(two_pos==-1)
+        cout<<n<<endl;
+    else{
+        // cout<<"hi ";
+        ll change=0;
+        for(ll i=two_pos+1;i<33;i++){
+            if(bit[i]==0)
+            {
+                change=i;
+                break;
+            }
+        }
+        for(ll i=0;i<change;i++)
+            bit[i]=0;
+        bit[change]=1;
+        ll ans=0;
+        for(ll i=0;i<33;i++){
+            ans+=(bit[i]*pow(3,i));
+        }
+        cout<<ans<<endl;
+    }
     return 0;
 }
 

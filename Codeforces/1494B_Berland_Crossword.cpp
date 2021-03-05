@@ -83,26 +83,37 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vl v(n+1),a(n+1);
-    for(ll i=1;i<=n;i++){
-        cin>>v[i];
-        a[i]=v[i];
-    }
-    srt(a);
-    for(ll i=1;i<=k;i++){
-        set<ll>s1,s2;
-        for(ll j=i;j<=n;j+=k){
-            s1.insert(a[j]);
-            s2.insert(v[j]);
+    ll n,u,r,d,l;
+    ll U=0,R=0,L=0,D=0;
+    cin>>n>>u>>r>>d>>l;
+    ll temp=n-2;
+    for(ll ur=0;ur<=1;ur++)
+    {
+        for(ll ul=0;ul<=1;ul++)
+        {
+            for(ll dr=0;dr<=1;dr++)
+            {
+                for(ll dl=0;dl<=1;dl++)
+                {
+                    U=u,R=r,L=l,D=d;
+                    U-=ur;
+                    U-=ul;
+                    R-=ur;
+                    R-=dr;
+                    L-=ul;
+                    L-=dl;
+                    D-=dr;
+                    D-=dl;
+                    if(U>=0&&U<=temp&&R>=0&&R<=temp&&L>=0&&L<=temp&&D>=0&&D<=temp)
+                    {
+                        yes
+                        return 0;
+                    }
+                }
+            }
         }
-        if(s1!=s2){
-            cout<<"no"<<endl;
-            return 0;
-        }
     }
-    cout<<"yes"<<endl;
+    no
     return 0;
 }
 

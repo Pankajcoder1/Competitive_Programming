@@ -21,8 +21,8 @@ typedef vector<ll> vl;
 // loops
 #define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
+#define no cout<<"No"<<endl;
+#define yes cout<<"Yes"<<endl;
 // sort
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
@@ -83,26 +83,23 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vl v(n+1),a(n+1);
-    for(ll i=1;i<=n;i++){
-        cin>>v[i];
-        a[i]=v[i];
+    ll n;
+    cin>>n;
+    ll v[n][3];
+    for(ll i=0;i<n;i++){
+        cin>>v[i][0]>>v[i][1]>>v[i][2];
     }
-    srt(a);
-    for(ll i=1;i<=k;i++){
-        set<ll>s1,s2;
-        for(ll j=i;j<=n;j+=k){
-            s1.insert(a[j]);
-            s2.insert(v[j]);
-        }
-        if(s1!=s2){
-            cout<<"no"<<endl;
-            return 0;
-        }
+    ll mini=LONG_MAX;
+    for(ll i=0;i<n;i++){
+        ll end=v[i][0];
+        v[i][2]-=end;
+        if(v[i][2]>0)
+            mini=min(mini,v[i][1]);
     }
-    cout<<"yes"<<endl;
+    if(mini==LONG_MAX)
+        cout<<-1<<endl;
+    else
+        cout<<mini<<endl;
     return 0;
 }
 
@@ -114,7 +111,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();

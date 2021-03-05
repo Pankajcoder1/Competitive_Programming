@@ -21,8 +21,8 @@ typedef vector<ll> vl;
 // loops
 #define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
+#define no cout<<"No"<<endl;
+#define yes cout<<"Yes"<<endl;
 // sort
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
@@ -80,29 +80,65 @@ A=65,Z=90,a=97,z=122
 */
 /*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
+const ll N=1e5+5;
+ll freq[N];
+ll v[5][100];
+void process1(ll i,ll j){
+    for(ll x=1;x<=6;x++){
+        for(ll y=1;y<=6;y++){
+            ll temp=v[i][x]*10+v[j][y];
+            freq[temp]++;
+        }
+    }
+}
+
+void process2(ll i,ll j,ll k){
+    for(ll x=1;x<=6;x++){
+        for(ll y=1;y<=6;y++){
+            for(ll z=1;z<=6;z++){
+                ll temp=v[i][x]*100+v[j][y]*10+v[k][z];
+                freq[temp]++;
+            }
+        }
+    }
+}
 
 ll solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vl v(n+1),a(n+1);
+    ll n;
+    cin>>n;
     for(ll i=1;i<=n;i++){
-        cin>>v[i];
-        a[i]=v[i];
-    }
-    srt(a);
-    for(ll i=1;i<=k;i++){
-        set<ll>s1,s2;
-        for(ll j=i;j<=n;j+=k){
-            s1.insert(a[j]);
-            s2.insert(v[j]);
+        for(ll j=1;j<=6;j++){
+            cin>>v[i][j];
+            freq[v[i][j]]++;
         }
-        if(s1!=s2){
-            cout<<"no"<<endl;
+    }
+
+    for(ll i=1;i<=n;i++){
+        for(ll j=1;j<=n;j++){
+            if(i!=j){
+                process1(i,j);
+            }
+        }
+    }
+
+    for(ll i=1;i<=n;i++){
+        for(ll j=1;j<=n;j++){
+            if(i!=j){
+                for(ll k=1;k<=n;k++){
+                    if(k==i||k==j)
+                        continue;
+                    process2(i,j,k);
+                }
+            }
+        }
+    }
+    for(ll i=1;i<=1000;i++){
+        if(freq[i]==0){
+            cout<<i-1<<endl;
             return 0;
         }
     }
-    cout<<"yes"<<endl;
     return 0;
 }
 
@@ -114,7 +150,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    cin>>TestCase;
+    // cin>>TestCase;
     while(TestCase--)
     {
         solve();
