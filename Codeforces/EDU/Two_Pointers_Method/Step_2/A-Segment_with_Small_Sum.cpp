@@ -21,8 +21,8 @@ typedef vector<ll> vl;
 // loops
 #define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
+#define no cout<<"No"<<endl;
+#define yes cout<<"Yes"<<endl;
 // sort
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
@@ -38,15 +38,6 @@ T mymax(T x,T y)
     return (x>y)?x:y;
 }
 // function
-void kickstart()
-{
-    ll test;
-    cin>>test;
-    for(ll i=1;i<=test;i++)
-    {
-        cout<<"Case #"<<i<<": ";
-    }
-}
 ll power(ll x,ll y,ll mod)
 {
     ll res=1;
@@ -92,35 +83,20 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-    ll n,m;
-    cin>>n>>m;
-    ll ans=0;
-    vl a(n),b(m);
-    forin(a,n);
-    forin(b,m);
-    ll first=0,second=0;
-    
-    while(first<n||second<m){
-        if(second==m||(first<n&&a[first]<b[second]))
-            first++;
-        else if(a[first]==b[second]){
-            ll val=a[first];
-            ll equal_a=0,equal_b=0;
-            while(first<n&&a[first]==val){
-                first++;
-                equal_a++;
-            }
-            while(second<m&&b[second]==val){
-                second++;
-                equal_b++;
-            }
-            ans+=(equal_b*equal_a);
+    ll n,s;
+    cin>>n>>s;
+    vl v(n);
+    forin(v,n);
+    ll first=0,maxo=0,length=0,second=0;
+    ll sum=0;
+    for(second =0;second<n;second++){
+        sum+=v[second];
+        while(first<n&&sum>s){
+            sum-=v[first++];
         }
-        else
-            second++;
+        maxo=max(maxo,second+1-first);
     }
-
-    cout<<ans<<endl;
+    cout<<maxo<<endl;
     return 0;
 }
 

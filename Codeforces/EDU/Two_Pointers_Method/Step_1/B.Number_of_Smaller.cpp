@@ -100,11 +100,8 @@ ll solve()
     ll first=0;
     for(ll i=0;i<m;i++)
     {
-        while(i<m&&a[first]<b[i])
+        while(first<n&&a[first]<b[i])
         {
-            
-            if(first>=n)
-                break;
             first++;
         }
         cout<<first<<" ";

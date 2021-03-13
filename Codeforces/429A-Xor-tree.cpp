@@ -21,8 +21,8 @@ typedef vector<ll> vl;
 // loops
 #define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
+#define no cout<<"No"<<endl;
+#define yes cout<<"Yes"<<endl;
 // sort
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
@@ -38,15 +38,6 @@ T mymax(T x,T y)
     return (x>y)?x:y;
 }
 // function
-void kickstart()
-{
-    ll test;
-    cin>>test;
-    for(ll i=1;i<=test;i++)
-    {
-        cout<<"Case #"<<i<<": ";
-    }
-}
 ll power(ll x,ll y,ll mod)
 {
     ll res=1;
@@ -89,38 +80,57 @@ A=65,Z=90,a=97,z=122
 */
 /*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
+const ll N=1e5+2;
+vector<ll> ans;
+vector<bool> check(N,false);
+vector<vector<ll>> graph(N,vector<ll>());
+
+ll dfs(ll node,ll even,ll odd,ll level,vector<ll>& goal,vector<ll>& init){
+    ll cur=0;
+    if(level%2==0)
+        cur=(init[node]+even)%2;
+    else
+        cur=(init[node]+odd)%2;
+    if(goal[node]!=cur){
+        ans.pb(node);
+        if(level%2==0)
+            even++;
+        else
+            odd++;
+    }
+    check[node]=true;
+    for(auto x:graph[node]){
+        if(check[x]==false){
+            dfs(x,even,odd,level+1,goal,init);
+        }
+    }
+    return 0;
+}
 
 ll solve()
 {
-    ll n,m;
-    cin>>n>>m;
-    ll ans=0;
-    vl a(n),b(m);
-    forin(a,n);
-    forin(b,m);
-    ll first=0,second=0;
+    ll n;
+    cin>>n;
     
-    while(first<n||second<m){
-        if(second==m||(first<n&&a[first]<b[second]))
-            first++;
-        else if(a[first]==b[second]){
-            ll val=a[first];
-            ll equal_a=0,equal_b=0;
-            while(first<n&&a[first]==val){
-                first++;
-                equal_a++;
-            }
-            while(second<m&&b[second]==val){
-                second++;
-                equal_b++;
-            }
-            ans+=(equal_b*equal_a);
-        }
-        else
-            second++;
+    for(ll i=1;i<n;i++){
+        ll a,b;
+        cin>>a>>b;
+        graph[a].pb(b);
+        graph[b].pb(a);
     }
 
-    cout<<ans<<endl;
+    vl init(n+1,0),goal(n+1,0);
+    for(ll i=1;i<=n;i++){
+        cin>>init[i];
+    }
+    for(ll i=1;i<=n;i++){
+        cin>>goal[i];
+    }
+
+    dfs(1,0,0,0,goal,init);
+    cout<<sz(ans)<<endl;
+    for(auto x:ans)
+        cout<<x<<endl;
     return 0;
 }
 

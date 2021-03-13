@@ -18,4 +18,4 @@ Contain file of my [competitive programming](https://en.wikipedia.org/wiki/Compe
 ## Name convention of file
 > Name of any file is combination of question name,quesion id, contest id..  depend on platform.
 ---
-I write code in [c++](https://medium.com/sololearn/reasons-to-love-c-11c7c2f23d88).
+I write code in [C++](https://medium.com/sololearn/reasons-to-love-c-11c7c2f23d88).

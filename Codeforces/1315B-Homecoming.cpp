@@ -38,15 +38,6 @@ T mymax(T x,T y)
     return (x>y)?x:y;
 }
 // function
-void kickstart()
-{
-    ll test;
-    cin>>test;
-    for(ll i=1;i<=test;i++)
-    {
-        cout<<"Case #"<<i<<": ";
-    }
-}
 ll power(ll x,ll y,ll mod)
 {
     ll res=1;
@@ -92,34 +83,26 @@ A=65,Z=90,a=97,z=122
 
 ll solve()
 {
-    ll n,m;
-    cin>>n>>m;
-    ll ans=0;
-    vl a(n),b(m);
-    forin(a,n);
-    forin(b,m);
-    ll first=0,second=0;
-    
-    while(first<n||second<m){
-        if(second==m||(first<n&&a[first]<b[second]))
-            first++;
-        else if(a[first]==b[second]){
-            ll val=a[first];
-            ll equal_a=0,equal_b=0;
-            while(first<n&&a[first]==val){
-                first++;
-                equal_a++;
-            }
-            while(second<m&&b[second]==val){
-                second++;
-                equal_b++;
-            }
-            ans+=(equal_b*equal_a);
+    ll a,b,p;
+    string s;
+    cin>>a>>b>>p>>s;
+    ll n=sz(s);
+    ll ans=n;
+    ll cost=0;
+    for(ll i=n-2;i>=0;i--){
+        if(s[i]=='A'&&(i==0||s[i]!=s[i-1])){
+            cost+=a;
+            if(cost<=p)
+                ans=i+1;
         }
-        else
-            second++;
+        else if(s[i]=='B'&&(i==0||s[i]!=s[i-1])){
+            cost+=b;
+            if(cost<=p)
+                ans=i+1;
+        }
+        if(cost>p)
+            break;
     }
-
     cout<<ans<<endl;
     return 0;
 }
@@ -132,7 +115,7 @@ int main()
         freopen("output.txt","w",stdout);
     #endif */
     ll TestCase=1;
-    // cin>>TestCase;
+    cin>>TestCase;
     while(TestCase--)
     {
         solve();
