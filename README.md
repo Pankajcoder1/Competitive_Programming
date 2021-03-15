@@ -3,7 +3,7 @@
 ### Profile badge
 [![Badge](https://cp-logo.vercel.app/codeforces/Pankaj_Kumar1)](https://codeforces.com/profile/Pankaj_Kumar1)  [![Badge](https://cp-logo.vercel.app/codechef/pankajcoder1)](https://www.codechef.com/users/pankajcoder1) [![Badge](https://cp-logo.vercel.app/atcoder/Pankajcoder1)](https://atcoder.jp/users/Pankajcoder1)
 ---
-Contain file of my [competitive programming](https://en.wikipedia.org/wiki/Competitive_programming) including some platform like..
+Contain file of my [Competitive Programming](https://en.wikipedia.org/wiki/Competitive_programming) including some platform like..
 - [Codeforces](https://codeforces.com/)
 - [Codechef](https://www.codechef.com/)
 - [Leetcode](https://leetcode.com/)
