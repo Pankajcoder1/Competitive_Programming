@@ -6,6 +6,7 @@
 Contain file of my [Competitive Programming](https://en.wikipedia.org/wiki/Competitive_programming) including some platform like..
 - [Codeforces](https://codeforces.com/)
 - [Codechef](https://www.codechef.com/)
+- [EDU Codeforces Section](https://codeforces.com/edu/courses)
 - [Leetcode](https://leetcode.com/)
 - [Atcoder](https://atcoder.jp/home)
 - [Kick Start](https://codingcompetitions.withgoogle.com/kickstart)
