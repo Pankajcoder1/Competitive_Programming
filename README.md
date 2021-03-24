@@ -18,9 +18,10 @@ Contain file of my [Competitive Programming](https://en.wikipedia.org/wiki/Compe
 - [Facebook hacker cup](https://www.facebook.com/codingcompetitions/hacker-cup)
 - [Dev Skill](http://www.devskill.com/Home)
 - [Open Kattis](https://open.kattis.com/)
+- [ACMSGURU Codeforces Section](https://codeforces.com/problemsets/acmsguru)
 ---
 
 ## Name convention of file
 > Name of any file is combination of question name,quesion id, contest id..  depend on platform.
 ---
-I write code in [C++](https://medium.com/sololearn/reasons-to-love-c-11c7c2f23d88).
+I love to write code in [C++](https://medium.com/sololearn/reasons-to-love-c-11c7c2f23d88).
