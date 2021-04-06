@@ -1,6 +1,7 @@
 /*
     written by Pankaj Kumar.
     country:-INDIA
+    Institute: National Institute of Technology, Uttarakhand
 */
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
@@ -8,6 +9,7 @@
 using namespace std;
 using namespace __gnu_pbds;
 typedef long long ll ;
+typedef unsigned long long ull;
 typedef vector<ll> vl;
 #define speed cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 /*  Abbrevations  */
@@ -28,6 +30,7 @@ typedef vector<ll> vl;
 #define srtGreat(V) sort(all(V),greater<ll>())
 // some extra
 #define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} line;
+#define precision(x) cout<<fixed<<setprecision(x);
 #define sz(V) ll(V.size())
 // template
 template <typename T>
@@ -53,7 +56,10 @@ ll power(ll x,ll y,ll mod)
 }
 ll str_to_num(string s)
 {
-    return stoi(s);
+    stringstream pk(s);
+    ll num;
+    pk>>num;
+    return num;
 }
 
 string num_to_str(ll num)
@@ -76,11 +82,57 @@ class Point
 /* ascii value 
 A=65,Z=90,a=97,z=122
 */
-/*  -----------------------------------------------------------------------------------*/
+/*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
+const ll INF=LONG_MAX;
+const ll mod1=1e9+7;
+const ll mod2=998244353;
 
 ll solve()
 {
+    ll n;
+    cin>>n;
+    vl v(n);
+    forin(v,n);
+    ll pos=0,temp_pos=0;
+    ll pre=v[n-1];
+    for(ll i=n-1;i>=0;i--){
+        if(v[i]<=pre){
+            pre=v[i];
+            continue;
+        }
+        else{
+            temp_pos=i+1;
+            break;
+        }
+    }
+    pre=v[0];
+    ll temp_pos2=0;
+    for(ll i=0;i<n;i++){
+        if(v[i]>=pre){
+            pre=v[i];
+            continue;
+        }
+        else{
+            temp_pos2=i;
+            break;
+        }
+    }
+    if(temp_pos==temp_pos2){
+        if(temp_pos2==0){
+            yes
+            cout<<0<<endl;
+        }
+        else if(v[0]>=v[n-1]){
+            yes
+            cout<<1<<endl;
+        }
+        else
+            no
+        
+    }
+    else
+        no
     return 0;
 }
 
@@ -98,8 +150,10 @@ int main()
         solve();
     }
 }
-
-/* stuff you should look before submission 
+/* -----------------END OF PROGRAM --------------------*/
+/*
+* stuff you should look before submission 
+* constraint and time limit
 * int overflow
 * special test case (n=0||n=1||n=2)
 * don't get stuck on one approach if you get wrong answer
