@@ -93,41 +93,26 @@ const ll mod2=998244353;
 // divide into cases, brute force, pattern finding
 // sort, greedy, binary search, two pointer
 // transform into graph
-vector<vector<ll>> ncr(52,vector<ll>(52,0));
-
-void cal(){
-    ncr[0][0]=1;
-    for(ll i=1;i<=50;i++){
-        ncr[i][0]=1;
-        for(ll j=1;j<=50;j++){
-            ncr[i][j]=(ncr[i-1][j]+ncr[i-1][j-1]);
-        }
-    }
-    return ;
-}
 
 ll solve()
 {
     ll n,k;
     cin>>n>>k;
-    vl v(n);
-    forin(v,n);
-    srt(v);
-    map<ll,ll> m;
-    for(ll i=0;i<n;i++){
-        m[v[i]]++;
+    
+    ll maxo=(n-1)/2;
+    if(k>maxo){
+        cout<<-1<<endl;
+        return 0;
     }
-    map<ll,ll> m2;
-    for(ll i=0;i<k;i++){
-        m2[v[i]]++;
+    vector<ll> v(n);
+    for(ll i = 0;i < n;i++)
+        v[i] = i + 1;
+    for(ll i = 1;i < n;i += 2) {
+        if(k == 0) break;
+        swap(v[i], v[i + 1]);
+        k--;
     }
-    ll ans=1;
-    for(auto x:m2){
-        ll total=m[x.ff];
-        ll need=x.ss;
-        ans*=ncr[total][need];
-    }
-    cout<<ans<<endl;
+    printv(v);
     return 0;
 }
 
@@ -138,7 +123,6 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("output.txt","w",stdout);
     #endif */
-    cal();
     ll TestCase=1;
     cin>>TestCase;
     while(TestCase--)

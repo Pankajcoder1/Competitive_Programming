@@ -85,49 +85,69 @@ A=65,Z=90,a=97,z=122
 /*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
 const ll INF=LONG_MAX;
-const ll mod1=1e9+7;
 const ll mod2=998244353;
-
-
-// Techniques
-// divide into cases, brute force, pattern finding
-// sort, greedy, binary search, two pointer
-// transform into graph
-vector<vector<ll>> ncr(52,vector<ll>(52,0));
-
-void cal(){
-    ncr[0][0]=1;
-    for(ll i=1;i<=50;i++){
-        ncr[i][0]=1;
-        for(ll j=1;j<=50;j++){
-            ncr[i][j]=(ncr[i-1][j]+ncr[i-1][j-1]);
-        }
-    }
-    return ;
-}
 
 ll solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vl v(n);
-    forin(v,n);
-    srt(v);
-    map<ll,ll> m;
+    ll n,m,k;
+    cin>>n>>m>>k;
+    vector<vector<ll>> matrix(n,vector<ll>(m,0));
     for(ll i=0;i<n;i++){
-        m[v[i]]++;
+        for(ll j=0;j<m;j++){
+            cin>>matrix[i][j];
+        }
     }
-    map<ll,ll> m2;
-    for(ll i=0;i<k;i++){
-        m2[v[i]]++;
+
+    ll count=0;
+
+
+    vector<vector<ll>>pre_sum(n+1,vector<ll>(m+1,0));
+
+    pre_sum[1][1]=matrix[0][0];
+
+    for(ll i=1;i<m;i++)
+        pre_sum[1][i+1]=pre_sum[1][i]+matrix[0][i];
+
+
+
+    for(ll i=1;i<n;i++){
+        pre_sum[i+1][1]=pre_sum[i][1]+matrix[i][0];
     }
-    ll ans=1;
-    for(auto x:m2){
-        ll total=m[x.ff];
-        ll need=x.ss;
-        ans*=ncr[total][need];
+
+    for(ll i=1;i<n;i++){
+        for(ll j=1;j<m;j++){
+            pre_sum[i+1][j+1]=pre_sum[i+1][j]+pre_sum[i][j+1]-pre_sum[i][j]+matrix[i][j];
+        }
     }
-    cout<<ans<<endl;
+
+
+    ll mini=min(n,m);
+    ll maxo=max(n,m);
+    count=n*m;
+    ll temp=2;
+    while(temp<=mini){
+        count+=(mini-temp+1)*(maxo-temp+1);
+        temp++;
+    }
+    for(ll i=1;i<=mini;i++){
+        for(ll j=i;j<=n;j++){
+            for(ll z=i;z<=m;z++){
+                ll sum=pre_sum[j][z]+pre_sum[j-i][z-i]-(pre_sum[j-i][z]+pre_sum[j][z-i]);
+                if(sum<(i*i*k))
+                    count--;
+            }
+        }
+    }
+
+
+    // for(ll i=0;i<=n;i++){
+    //  for(ll j=0;j<=m;j++){
+    //      cout<<pre_sum[i][j]<<" ";
+    //  }
+    //  line;
+    // }
+
+    cout<<count<<endl;
     return 0;
 }
 
@@ -138,7 +158,6 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("output.txt","w",stdout);
     #endif */
-    cal();
     ll TestCase=1;
     cin>>TestCase;
     while(TestCase--)
