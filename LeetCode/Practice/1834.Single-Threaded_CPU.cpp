@@ -35,6 +35,39 @@ const ll mod2=998244353;
 // transform into graph
 
 // add main code here
+class Solution {
+public:
+    vector<int> getOrder(vector<vector<int>>& tasks) {
+        vector<pair<pair<int,int>,int>> v;
+        vl ans;
+        int n=tasks.size();
+        for(int i=0;i<n;i++){
+        	v.pb(mp(mp(tasks[i][0],tasks[i][1]),i));
+        }
+        srt(v);
+        ll now=0;
+        set<pair<int,int>> s;
+        pair<int,int> temp;
+        int i=0;
+        while(i<n||sz(s)>0){
+        	if(sz(s)==0){
+        		now=max(now,ll(v[i].ff.ff));
+        	}
+        	int j=i;
+        	while(j<n&&v[j].ff.ff<=now){
+        		s.insert(mp(v[j].ff.ss,v[j].ss));
+        		j++;
+        	}
+        	i=j;
+        	temp=*s.begin();
+        	s.erase(s.begin());
+        	now+=temp.ff;
+        	ans.pb(temp.ss);
+        }
+
+        return ans;
+    }
+};
 
 
 

@@ -35,7 +35,20 @@ const ll mod2=998244353;
 // transform into graph
 
 // add main code here
-
+class Solution {
+public:
+    int maxIceCream(vector<int>& costs, int coins) {
+        srt(costs);
+        int ans=0;
+        for(int i=0;i<sz(costs);i++){
+            if(costs[i]<=coins){
+                coins-=costs[i];
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
 
 
 /* -----------------END OF PROGRAM --------------------*/

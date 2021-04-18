@@ -35,7 +35,51 @@ const ll mod2=998244353;
 // transform into graph
 
 // add main code here
-
+class Solution {
+public:
+    int getXORSum(vector<int>& arr1, vector<int>& arr2) {
+        vl set_bit_arr1(32,0),set_bit_arr2(32,0);
+        for(auto x:arr1){
+        	int temp=x;
+        	int pos=0;
+        	while(temp){
+        		if(temp&1)
+        			set_bit_arr1[pos]++;
+        		temp>>=1;
+        		pos++;
+        	}
+        }
+        for(auto x:arr2){
+        	int temp=x;
+        	int pos=0;
+        	while(temp){
+        		if(temp&1)
+        			set_bit_arr2[pos]++;
+        		temp>>=1;
+        		pos++;
+        	}
+        }
+        vl ans(32,0);
+        for(int i=0;i<32;i++){
+        	// ans[i]=set_bit_arr1[i]*set_bit_arr2[i];
+        	if(set_bit_arr1[i]>0&&set_bit_arr2[i]>0){
+        		if(set_bit_arr1[i]%2==0||set_bit_arr2[i]%2==0)
+        			ans[i]=2;
+        		else
+        			ans[i]=1;
+        	}
+        	else
+        		ans[i]=0;
+        }
+        int final_ans=0;
+        for(int i=0;i<32;i++){
+        	if(ans[i]&1){
+        		final_ans+=pow(2,i);
+        	}
+        }
+        return final_ans;
+    }
+};
 
 
 /* -----------------END OF PROGRAM --------------------*/

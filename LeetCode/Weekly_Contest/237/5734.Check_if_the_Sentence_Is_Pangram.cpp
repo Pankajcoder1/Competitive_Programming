@@ -35,7 +35,23 @@ const ll mod2=998244353;
 // transform into graph
 
 // add main code here
-
+class Solution {
+public:
+    bool checkIfPangram(string sentence) {
+        vector<bool>v(26,false);
+        for(auto x:sentence){
+            if(x>='a'&&x<='z')
+            {
+                v[x-'a']=true;
+            }
+        }
+        for(int i=0;i<26;i++){
+            if(v[i]==false)
+                return false;
+        }
+        return true;
+    }
+};
 
 
 /* -----------------END OF PROGRAM --------------------*/

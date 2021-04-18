@@ -35,7 +35,46 @@ const ll mod2=998244353;
 // transform into graph
 
 // add main code here
-
+class Solution {
+public:
+    vector<int> getMaximumXor(vector<int>& nums, int maximumBit) {
+        vl ans;
+        int n=sz(nums);
+        vl XOR(n,0);
+        int temp=0;
+        for(int i=0;i<n;i++){
+            temp^=nums[i];
+            XOR[i]=temp;
+        }
+        reverse(all(XOR));
+        for(int i=0;i<n;i++){
+            vl bits(maximumBit,0);
+            int pos=0;
+            temp=XOR[i];
+            while(temp){
+                if(temp&1)
+                    bits[pos]=0;
+                else
+                    bits[pos]=1;
+                pos++;
+                temp>>=1;
+                if(pos>=maximumBit)
+                    break;
+            }
+            if(pos<maximumBit){
+                while(pos<maximumBit){
+                    bits[pos++]=1;
+                }
+            }
+            int temp_ans=0;
+            for(int j=0;j<maximumBit;j++){
+                temp_ans+=bits[j]*pow(2,j);
+            }
+            ans.pb(temp_ans);
+        }
+        return ans;
+    }
+};
 
 
 /* -----------------END OF PROGRAM --------------------*/

@@ -35,7 +35,17 @@ const ll mod2=998244353;
 // transform into graph
 
 // add main code here
-
+class Solution {
+public:
+    int getXORSum(vector<int>& arr1, vector<int>& arr2) {
+        int ans1=0,ans2=0;
+        for(auto x:arr1)
+            ans1^=x;
+        for(auto x:arr2)
+            ans2^=x;
+        return ans1&ans2;
+    }
+};
 
 
 /* -----------------END OF PROGRAM --------------------*/

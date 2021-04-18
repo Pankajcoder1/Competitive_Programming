@@ -5,7 +5,7 @@
 */
 typedef long long ll ;
 typedef unsigned long long ull;
-typedef vector<int> vl;
+typedef vector<ll> vl;
 /*  Abbrevations  */
 #define ff first
 #define ss second
@@ -16,7 +16,7 @@ typedef vector<int> vl;
 #define srt(V) sort(all(V))
 #define srtGreat(V) sort(all(V),greater<ll>())
 // some extra
-#define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} cout<<endl;
+#define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} line;
 #define precision(x) cout<<fixed<<setprecision(x);
 #define sz(V) ll(V.size())
 
@@ -35,7 +35,23 @@ const ll mod2=998244353;
 // transform into graph
 
 // add main code here
-
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        int pre=nums[0];
+        int ans=0;
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]<=pre){
+                ans+=abs(pre-nums[i])+1;
+                pre++;
+            }
+            else
+                pre=nums[i];
+        }
+        return ans;
+        
+    }
+};
 
 
 /* -----------------END OF PROGRAM --------------------*/

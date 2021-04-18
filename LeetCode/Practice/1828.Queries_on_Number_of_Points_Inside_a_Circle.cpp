@@ -16,7 +16,7 @@ typedef vector<int> vl;
 #define srt(V) sort(all(V))
 #define srtGreat(V) sort(all(V),greater<ll>())
 // some extra
-#define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} cout<<endl;
+#define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} line;
 #define precision(x) cout<<fixed<<setprecision(x);
 #define sz(V) ll(V.size())
 
@@ -35,7 +35,27 @@ const ll mod2=998244353;
 // transform into graph
 
 // add main code here
-
+class Solution {
+public:
+    vector<int> countPoints(vector<vector<int>>& points, vector<vector<int>>& queries) {
+        vl ans;
+        for(int i=0;i<queries.size();i++){
+            int count=0;
+            for(int j=0;j<sz(points);j++){
+                int x=points[j][0];
+                int y=points[j][1];
+                int a=queries[i][0];
+                int b=queries[i][1];
+                int r=queries[i][2];
+                int temp=pow(abs(x-a),2)+pow(abs(y-b),2)-(r*r);
+                if(temp<=0)
+                    count++;
+            }
+            ans.pb(count);
+        }
+        return ans;
+    }
+};
 
 
 /* -----------------END OF PROGRAM --------------------*/
