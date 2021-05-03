@@ -11,7 +11,6 @@ using namespace __gnu_pbds;
 typedef long long ll ;
 typedef unsigned long long ull;
 typedef vector<ll> vl;
-typedef vector<vector<ll>> vvl;
 #define speed cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 /*  Abbrevations  */
 #define ff first
@@ -23,8 +22,8 @@ typedef vector<vector<ll>> vvl;
 // loops
 #define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
+#define no cout<<"No"<<endl;
+#define yes cout<<"Yes"<<endl;
 // sort
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
@@ -39,6 +38,7 @@ T mymax(T x,T y)
 {
     return (x>y)?x:y;
 }
+// function
 ll power(ll x,ll y,ll mod)
 {
     ll res=1;
@@ -93,7 +93,14 @@ const ll mod2=998244353;
 
 ll solve()
 {
-    
+    string s;
+    cin>>s;
+    ll ans=0;
+    for(ll i=0;i<sz(s);i++){
+        if(s.substr(i,4)=="ZONe")
+            ans++;
+    }
+    cout<<ans<<endl;
     return 0;
 }
 
@@ -104,11 +111,10 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("output.txt","w",stdout);
     #endif */
-    ll test;
-    cin>>test;
-    for(ll i=1;i<=test;i++)
+    ll TestCase=1;
+    // cin>>TestCase;
+    while(TestCase--)
     {
-        cout<<"Case #"<<i<<": ";
         solve();
     }
 }

@@ -39,6 +39,7 @@ T mymax(T x,T y)
 {
     return (x>y)?x:y;
 }
+// function
 ll power(ll x,ll y,ll mod)
 {
     ll res=1;
@@ -56,7 +57,10 @@ ll power(ll x,ll y,ll mod)
 }
 ll str_to_num(string s)
 {
-    return stoi(s);
+    stringstream pk(s);
+    ll num;
+    pk>>num;
+    return num;
 }
 
 string num_to_str(ll num)
@@ -93,7 +97,30 @@ const ll mod2=998244353;
 
 ll solve()
 {
-    
+    ll n,m,x;
+    cin>>n>>m>>x;
+    vector<pair<ll,ll>> h(n);
+    for(ll i=0;i<n;i++){
+        ll temp;
+        cin>>temp;
+        h[i]={temp,i};
+    }
+    sort(all(h),greater<>());
+    vector<pair<ll,ll>> ans(n);
+    ll pos=1;
+    for(ll i=0;i<n;i++){
+        ans[i].ff=h[i].ss;
+        ans[i].ss=pos;
+        pos++;
+        if(pos>m)
+            pos=1;
+    }
+    srt(ans);
+    yes
+    // cout<<"ans is "<<endl;
+    for(ll i=0;i<n;i++)
+        cout<<ans[i].ss<<" ";
+    line;
     return 0;
 }
 
@@ -104,11 +131,10 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("output.txt","w",stdout);
     #endif */
-    ll test;
-    cin>>test;
-    for(ll i=1;i<=test;i++)
+    ll TestCase=1;
+    cin>>TestCase;
+    while(TestCase--)
     {
-        cout<<"Case #"<<i<<": ";
         solve();
     }
 }

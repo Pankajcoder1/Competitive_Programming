@@ -6,6 +6,7 @@
 typedef long long ll ;
 typedef unsigned long long ull;
 typedef vector<int> vl;
+typedef vector<vector<ll>> vvl;
 /*  Abbrevations  */
 #define ff first
 #define ss second

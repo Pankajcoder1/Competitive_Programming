@@ -39,6 +39,7 @@ T mymax(T x,T y)
 {
     return (x>y)?x:y;
 }
+// function
 ll power(ll x,ll y,ll mod)
 {
     ll res=1;
@@ -56,7 +57,10 @@ ll power(ll x,ll y,ll mod)
 }
 ll str_to_num(string s)
 {
-    return stoi(s);
+    stringstream pk(s);
+    ll num;
+    pk>>num;
+    return num;
 }
 
 string num_to_str(ll num)
@@ -93,7 +97,76 @@ const ll mod2=998244353;
 
 ll solve()
 {
-    
+    ll n,l,r;
+    cin>>n>>l>>r;
+    ll ans=0;
+    vl v(n);
+    forin(v,n);
+    map<ll,ll> left,right;
+    for(ll i=0;i<l;i++)
+        left[v[i]]++;
+    for(ll i=l;i<n;i++)
+        right[v[i]]++;
+
+    for(ll i=0;i<l;i++){
+        ll socks=v[i];
+        if(right[socks]>0){
+            left[socks]--;
+            right[socks]--;
+            if(right[socks]==0)
+                right.erase(socks);
+            if(left[socks]==0)
+                left.erase(socks);
+        }
+    }
+    ll sz_left=0;
+    ll sz_right=0;
+    // cout<<"in left "<<endl;
+    for(auto x:left){
+        sz_left+=x.ss;
+        // cout<<x.ff<<" "<<x.ss<<endl;
+    }
+    // cout<<"in right "<<endl;
+    for(auto x:right){
+        sz_right+=x.ss;
+        // cout<<"in rught "<<x.ff<<" "<<x.ss<<endl;
+    }
+    // cout<<"in left "<<sz_left<<" in right "<<sz_right<<endl;
+    if(sz_right==sz_left)
+        ans+=sz_right;
+    else{
+        ll increment=0;
+        ll sum2=sz_right+sz_left;
+        sum2/=2;
+        increment=abs(sum2-sz_right);
+        ans+=sum2;
+        ans+=increment;
+        if(sz_right>sz_left){
+            for(auto x:right){
+                if(increment<=0)
+                    break;
+                ll temp=x.ss/2;
+                if(temp>0){
+                    temp=min(temp,increment);
+                    increment-=temp;
+                    ans-=temp;
+                }
+            }
+        }
+        else{
+            for(auto x:left){
+                if(increment<=0)
+                    break;
+                ll temp=x.ss/2;
+                if(temp>0){
+                    temp=min(temp,increment);
+                    increment-=temp;
+                    ans-=temp;
+                }
+            }
+        }
+    }
+    cout<<ans<<endl;
     return 0;
 }
 
@@ -104,11 +177,10 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("output.txt","w",stdout);
     #endif */
-    ll test;
-    cin>>test;
-    for(ll i=1;i<=test;i++)
+    ll TestCase=1;
+    cin>>TestCase;
+    while(TestCase--)
     {
-        cout<<"Case #"<<i<<": ";
         solve();
     }
 }
