@@ -98,44 +98,21 @@ const ll mod2=998244353;
 // Experience :
 // Cp is nothing but only observation and mathematics.
 
-ll dp[200005][2];
-
 ll solve()
 {
     string s;
     cin>>s;
-    ll n=sz(s);
-    memset(dp,0,sizeof(dp));
-    if(s[n-1]=='1' or s[n-1]=='0'){
-        dp[n-1][s[n-1]-'0']=n-1;
-        dp[n-1][1-s[n-1]+'0']=-1;
-    }
-    else{
-        dp[n-1][0]=n-1;
-        dp[n-1][1]=n-1;
-    }
     ll ans=0;
-    for(ll i=n-2;i>=0;i--){
-        if(s[i]=='0'){
-            dp[i][1]=-1;
-            dp[i][0]=max(dp[i+1][1],i);
+    ll n=sz(s);
+    vl pos(2,-1);
+    for(ll i=0;i<n;i++){
+        ll temp=ll(s[i]-'0');
+        if(temp==0||temp==1){
+            pos[(temp^(i%2))]=i;
         }
-        else if(s[i]=='1'){
-            dp[i][0]=-1;
-            dp[i][1]=max(dp[i+1][0],i);
-        }
-        else{
-            dp[i][0]=i;
-            dp[i][1]=i;
-            if(s[i+1]!='0')
-                dp[i][0]=dp[i+1][1];
-            if(s[i+1]!='1')
-                dp[i][1]=dp[i+1][0];
-        }
-        ans-=(i-1);
-        ans+=max(dp[i][0],dp[i][1]);
+        ll mini=min(pos[0],pos[1]);
+        ans+=i-mini;
     }
-    ans++;
     cout<<ans<<endl;
     return 0;
 }

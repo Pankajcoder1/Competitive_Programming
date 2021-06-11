@@ -24,16 +24,25 @@ typedef vector<vector<ll>> vvl;
 /* ascii value 
 A=65,Z=90,a=97,z=122
 */
+/* Some syntax 
+//Syntax to create a min heap for priority queue
+//priority_queue <int, vector<int>, greater<int>>pq;
+*/
+
+
 /*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
-const ll INF=LONG_MAX;
+const ll INF=1e18;
 const ll mod1=1e9+7;
 const ll mod2=998244353;
 
-// Techniques
+// Techniques :
 // divide into cases, brute force, pattern finding
 // sort, greedy, binary search, two pointer
 // transform into graph
+
+// Experience :
+// Cp is nothing but only observation and mathematics.
 
 // add main code here
 

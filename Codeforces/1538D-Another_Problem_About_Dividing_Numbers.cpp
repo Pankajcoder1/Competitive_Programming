@@ -83,12 +83,6 @@ class Point
 /* ascii value 
 A=65,Z=90,a=97,z=122
 */
-/* Some syntax 
-//Syntax to create a min heap for priority queue
-//priority_queue <int, vector<int>, greater<int>>pq;
-*/
-
-
 /*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
 const ll INF=1e18;
@@ -104,15 +98,67 @@ const ll mod2=998244353;
 // Experience :
 // Cp is nothing but only observation and mathematics.
 
+vl prime;
+const ll N=50000;
+void calculate(){
+    vector<bool> check(N,true);
+    for(ll i=2;i*i<=N;i++){
+        if(check[i]){
+            for(ll j=i*i;j<N;j+=i)
+                check[j]=false;
+        }
+    }
+    for(ll i=2;i<N;i++){
+        if(check[i])
+            prime.pb(i);
+    }
+}
+
 ll solve()
 {
-    
+    ll a,b,k;
+    cin>>a>>b>>k;
+    ll temp_k=0;
+    ll temp_a=a,temp_b=b;
+    for(auto x:prime){
+        if(temp_a%x==0){
+            while(temp_a%x==0){
+                temp_k++;
+                temp_a/=x;
+            }
+        }
+    }
+    for(auto x:prime){
+        if(temp_b%x==0){
+            while(temp_b%x==0){
+                temp_k++;
+                temp_b/=x;
+            }
+        }
+    }
+    if(temp_a>1)
+        temp_k++;
+    if(temp_b>1)
+        temp_k++;
+    if(k==1){
+        if((a%b==0||b%a==0)&&(a!=b))
+            yes
+        else
+            no
+    }
+    else{
+        if(temp_k>=k)
+            yes
+        else
+            no
+    }
     return 0;
 }
 
 int main()
 {
     speed;
+    calculate();
     /* #ifndef ONLINE_JUDGE
         freopen("input.txt","r",stdin);
         freopen("output.txt","w",stdout);

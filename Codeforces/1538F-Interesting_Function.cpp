@@ -83,12 +83,6 @@ class Point
 /* ascii value 
 A=65,Z=90,a=97,z=122
 */
-/* Some syntax 
-//Syntax to create a min heap for priority queue
-//priority_queue <int, vector<int>, greater<int>>pq;
-*/
-
-
 /*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
 const ll INF=1e18;
@@ -103,10 +97,20 @@ const ll mod2=998244353;
 
 // Experience :
 // Cp is nothing but only observation and mathematics.
+ll find(ll num){
+    ll temp_ans=0,multi=1;
+    for(ll i=0;i<12;i++){
+        temp_ans+=num/multi;
+        multi*=10;
+    }
+    return temp_ans;
+}
 
 ll solve()
 {
-    
+    ll a,b;
+    cin>>a>>b;
+    cout<<ll(find(b)-find(a))<<endl;
     return 0;
 }
 

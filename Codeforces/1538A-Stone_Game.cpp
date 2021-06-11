@@ -83,12 +83,6 @@ class Point
 /* ascii value 
 A=65,Z=90,a=97,z=122
 */
-/* Some syntax 
-//Syntax to create a min heap for priority queue
-//priority_queue <int, vector<int>, greater<int>>pq;
-*/
-
-
 /*  --------------------MAIN PROGRAM----------------------------*/
 // to run ctrl+b
 const ll INF=1e18;
@@ -106,7 +100,20 @@ const ll mod2=998244353;
 
 ll solve()
 {
-    
+    ll n;
+    cin>>n;
+    vector<pair<ll,ll>> v(n);
+    for(ll i=0;i<n;i++){
+        ll temp;
+        cin>>temp;
+        v[i]={temp,i+1};
+    }
+    srt(v);
+    ll mini=v[0].ss;
+    ll maxo=v[n-1].ss;
+    // cout<<"mini "<<mini<<" and maxo "<<maxo<<endl;
+    ll ans=min({(max({v[0].ss,v[n-1].ss})),(max({n+1-v[0].ss,n+1-v[n-1].ss})),(v[0].ss+n+1-v[n-1].ss),(n+1-v[0].ss+v[n-1].ss)});
+    cout<<ans<<endl;
     return 0;
 }
 

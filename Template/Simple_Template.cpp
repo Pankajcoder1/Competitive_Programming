@@ -8,10 +8,13 @@ using namespace std;
 typedef long long ll;
 
 
-// Techniques
+// Techniques :
 // divide into cases, brute force, pattern finding
 // sort, greedy, binary search, two pointer
 // transform into graph
+
+// Experience :
+// Cp is nothing but only observation and mathematics.
 
 long long solve()
 {
