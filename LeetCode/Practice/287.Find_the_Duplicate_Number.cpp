@@ -47,35 +47,15 @@ const ll mod2=998244353;
 // add main code here
 class Solution {
 public:
-    void nextPermutation(vector<int>& nums) {
-        int n=sz(nums);
-        if(n==1)
-            return ;
-        if(nums[n-1]>nums[n-2]){
-            swap(nums[n-1],nums[n-2]);
-            return ;
+    int findDuplicate(vector<int>& nums) {
+        int duplicate=0;
+        vector<int> times(100001,0);
+        for(auto x:nums){
+            times[x]++;
+            if(times[x]>1)
+                return x;
         }
-        int pos=-1;
-        for(int i=n-1;i>0;i--){
-            if(nums[i]>nums[i-1]){
-                pos=i-1;
-                break;
-            }
-        }
-        if(pos==-1){
-            reverse(all(nums));
-            return ;
-        }
-        int swap_index,mini=INT_MAX;
-        for(int i=pos+1;i<n;i++){
-            if(nums[i]>nums[pos]&&nums[i]<mini){
-                mini=nums[i];
-                swap_index=i;
-            }
-        }
-        swap(nums[swap_index],nums[pos]);
-        sort(nums.begin()+pos+1,nums.end());
-        return ;
+        return duplicate;
     }
 };
 
