@@ -6,12 +6,13 @@
 typedef long long ll ;
 typedef unsigned long long ull;
 typedef vector<int> vl;
-typedef vector<vector<int>> vvl;
+typedef vector<vector<ll>> vvl;
 /*  Abbrevations  */
 #define ff first
 #define ss second
 #define mp make_pair
 #define pb push_back
+#define Endl "\n"
 #define all(V) (V).begin(),(V).end()
 #define srt(V) sort(all(V))
 #define srtGreat(V) sort(all(V),greater<ll>())
@@ -44,6 +45,32 @@ const ll mod2=998244353;
 // Cp is nothing but only observation and mathematics.
 
 // add main code here
+class Solution {
+public:
+    string removeDuplicates(string s) {
+        stack<char> st;
+        string ans="";
+        for(auto x:s){
+            if(sz(st)==0){
+                st.push(x);
+            }
+            else{
+                if(st.top()==x){
+                    st.pop();
+                }
+                else{
+                    st.push(x);
+                }
+            }
+        }
+        while(sz(st)){
+            ans+=st.top();
+            st.pop();
+        }
+        reverse(all(ans));
+        return ans;
+    }
+};
 
 
 

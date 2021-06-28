@@ -66,17 +66,7 @@ string num_to_str(ll num)
 }
 // datatype definination
 #define ordered_set tree<ll,null_type,less<ll>,rb_tree_tag,tree_order_statistics_node_update>
-class Point
-{
-    public:
-        ll x;
-        ll y;
-        ll z;
-        ll getsum()
-        {
-            return x+y+z;
-        }
-};
+
 /* ascii value 
 A=65,Z=90,a=97,z=122
 */
