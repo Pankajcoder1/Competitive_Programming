@@ -85,7 +85,7 @@
 			"//priority_queue <int, vector<int>, greater<int>>pq;",
 			"*/",
 
-
+			"\n",
 			"/*  --------------------MAIN PROGRAM----------------------------*/",
 			"// to run ctrl+b",
 			"const ll INF=1e18;",
@@ -208,7 +208,7 @@
 
 	"Atcoder Template ": {
 		"prefix": [
-			"atcode"
+			"atcoder"
 		],
 		"body": [
 		  	"/*",
@@ -290,14 +290,14 @@
 			"//priority_queue <int, vector<int>, greater<int>>pq;",
 			"*/",
 
-
+			"\n",
 			"/*  --------------------MAIN PROGRAM----------------------------*/",
 			"// to run ctrl+b",
 			"const ll INF=1e18;",
 			"const ll mod1=1e9+7;",
 			"const ll mod2=998244353;",
 
-
+			"\n",
 			"// Techniques :",
 			"// divide into cases, brute force, pattern finding",
 			"// sort, greedy, binary search, two pointer",
@@ -305,7 +305,7 @@
 
 			"// Experience :",
 			"// Cp is nothing but only observation and mathematics.",
-
+			"\n",
 			"ll solve()",
 			"{",
 			"	$0",
@@ -436,10 +436,10 @@
 			"// divide into cases, brute force, pattern finding",
 			"// sort, greedy, binary search, two pointer",
 			"// transform into graph",
-
+			"\n",
 			"// Experience :",
 			"// Cp is nothing but only observation and mathematics.",
-
+			"\n",
 			"ll solve()",
 			"{",
 			"	$0",
@@ -471,5 +471,48 @@
 			"*/",
 		],
 		"description": "This is Template which I use in Kick Start round"
+	},
+
+	"Simple Basic Template ": {
+		"prefix": [
+			"simple",
+			"Simple",
+			"SIMPLE",
+			"basic",
+			"Basic",
+			"BASIC"
+		],
+		"body": [
+		  	"/*",
+    		"	written by Pankaj Kumar.",
+    		"	country:-INDIA",
+    		"	Institute: National Institute of Technology, Uttarakhand",
+			"*/",
+			"#include <bits/stdc++.h>",
+			"using namespace std;",
+			"\n",
+			"/* ascii value", 
+			"A=65,Z=90,a=97,z=122",
+			"*/\n",
+			"// Techniques :",
+			"// divide into cases, brute force, pattern finding",
+			"// sort, greedy, binary search, two pointer",
+			"// transform into graph",
+			"\n",
+			"int main()",
+			"{",
+			"	$0",
+			"	return 0;",
+			"}",
+			"/* -----------------END OF PROGRAM --------------------*/",
+			"/*",
+			"* stuff you should look before submission", 
+			"* constraint and time limit",
+			"* int overflow",
+			"* special test case (n=0||n=1||n=2)",
+			"* don't get stuck on one approach if you get wrong answer",
+			"*/",
+		],
+		"description": "This is simple basic template for C++"
 	}
 }
