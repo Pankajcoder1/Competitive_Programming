@@ -54,24 +54,27 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    int numDecodings(string s) {
+    int lengthOfLongestSubstring(string s) {
+        int maxo=1,first=0,second=1;
+        vl v(500,0);
         int n=sz(s);
-        vl dp(n+1,0);
-        dp[0]=1;
-        if(s[0]!='0'){
-            dp[1]=1;
+        if(n==0){
+            return 0;
         }
-        for(ll i=2;i<=n;i++){
-            int temp1=ll(s[i-1]-'0');
-            int temp2=ll(s[i-2]-'0')*10+temp1;
-            if(temp1>=1){
-                dp[i]+=dp[i-1];
+        v[int(s[0])]++;
+        while(second<n){
+            if(v[int(s[second])]>0){
+                v[int(s[first])]--;
+                first++;
             }
-            if(temp2>=10&&temp2<=26){
-                dp[i]+=dp[i-2];
+            else{
+                v[int(s[second])]++;
+                second++;
             }
+            int len=second-first;
+            maxo=max(maxo,len);
         }
-        return dp[n];
+        return maxo;
     }
 };
 

@@ -54,24 +54,23 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    int numDecodings(string s) {
-        int n=sz(s);
-        vl dp(n+1,0);
-        dp[0]=1;
-        if(s[0]!='0'){
-            dp[1]=1;
-        }
-        for(ll i=2;i<=n;i++){
-            int temp1=ll(s[i-1]-'0');
-            int temp2=ll(s[i-2]-'0')*10+temp1;
-            if(temp1>=1){
-                dp[i]+=dp[i-1];
-            }
-            if(temp2>=10&&temp2<=26){
-                dp[i]+=dp[i-2];
+    int findLength(vector<int>& nums1, vector<int>& nums2) {
+        int n=sz(nums1),m=sz(nums2);
+        vector<vector<int>> dp(n+1,vector<int>(m+1,0));
+        for(int i=1;i<=n;i++){
+            for(ll j=1;j<=m;j++){
+                if(nums1[i-1]==nums2[j-1]){
+                    dp[i][j]=max(dp[i][j],dp[i-1][j-1]+1);
+                }
             }
         }
-        return dp[n];
+        int maxo=0;
+        for(ll i=1;i<=n;i++){
+            for(ll j=1;j<=m;j++){
+                maxo=max(maxo,dp[i][j]);
+            }
+        }
+        return maxo;
     }
 };
 

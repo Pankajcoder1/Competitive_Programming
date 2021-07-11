@@ -54,24 +54,16 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    int numDecodings(string s) {
-        int n=sz(s);
-        vl dp(n+1,0);
-        dp[0]=1;
-        if(s[0]!='0'){
-            dp[1]=1;
-        }
-        for(ll i=2;i<=n;i++){
-            int temp1=ll(s[i-1]-'0');
-            int temp2=ll(s[i-2]-'0')*10+temp1;
-            if(temp1>=1){
-                dp[i]+=dp[i-1];
-            }
-            if(temp2>=10&&temp2<=26){
-                dp[i]+=dp[i-2];
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        int n=sz(matrix);
+        vl ans;
+        for(ll i=0;i<n;i++){
+            for(ll j=0;j<n;j++){
+                ans.pb(matrix[i][j]);
             }
         }
-        return dp[n];
+        srt(ans);
+        return ans[k-1];
     }
 };
 

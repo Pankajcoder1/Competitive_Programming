@@ -54,24 +54,28 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    int numDecodings(string s) {
-        int n=sz(s);
-        vl dp(n+1,0);
-        dp[0]=1;
-        if(s[0]!='0'){
-            dp[1]=1;
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        int n=mat.size();
+        int m=sz(mat[0]);
+        int total=n*m;
+        if(total!=(r*c)){
+            return mat;
         }
-        for(ll i=2;i<=n;i++){
-            int temp1=ll(s[i-1]-'0');
-            int temp2=ll(s[i-2]-'0')*10+temp1;
-            if(temp1>=1){
-                dp[i]+=dp[i-1];
-            }
-            if(temp2>=10&&temp2<=26){
-                dp[i]+=dp[i-2];
+        int pos=0;
+        vl single(total,0);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                single[pos++]=mat[i][j];
             }
         }
-        return dp[n];
+        pos=0;
+        vector<vector<int>> matrix(r,vector<int>(c,0));
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                matrix[i][j]=single[pos++];
+            }
+        }
+        return matrix;
     }
 };
 

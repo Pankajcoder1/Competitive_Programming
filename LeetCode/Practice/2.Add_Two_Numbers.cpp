@@ -52,26 +52,45 @@ const ll mod2=998244353;
 
 //Add main code here
 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    int numDecodings(string s) {
-        int n=sz(s);
-        vl dp(n+1,0);
-        dp[0]=1;
-        if(s[0]!='0'){
-            dp[1]=1;
-        }
-        for(ll i=2;i<=n;i++){
-            int temp1=ll(s[i-1]-'0');
-            int temp2=ll(s[i-2]-'0')*10+temp1;
-            if(temp1>=1){
-                dp[i]+=dp[i-1];
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* ans = new ListNode(-1);
+        ListNode* temp_ans=ans;
+        int temp_sum=0,flag=0;
+        while(1){
+            flag=0;
+            if(l1!=NULL){
+                temp_sum+=l1->val;
+                l1=l1->next;
+                flag++;
             }
-            if(temp2>=10&&temp2<=26){
-                dp[i]+=dp[i-2];
+            if(l2!=NULL){
+                temp_sum+=l2->val;
+                l2=l2->next;
+                flag++;
             }
+            if(flag==0){
+                break;
+            }
+            ans->next = new ListNode(temp_sum%10);
+            ans=ans->next;
+            temp_sum/=10;
         }
-        return dp[n];
+        if(temp_sum){
+            ans->next = new ListNode(temp_sum);
+        }
+        return temp_ans->next;
     }
 };
 
