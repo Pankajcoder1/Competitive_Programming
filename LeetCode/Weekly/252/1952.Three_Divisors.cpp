@@ -51,26 +51,31 @@ const ll mod2=998244353;
 
 
 //Add main code here
-
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> v(2,0);
-        for(int i=0;i<nums.size();i++)
-        {
-            for(int j=0;j<nums.size();j++)
-            {
-                if(i!=j&&(nums[i]+nums[j])==target)
-                {
-                    v[0]=i;
-                    v[1]=j;
-                    break;
+    bool isThree(int n) {
+        if(n==1){
+            return false;
+        }
+        else{
+            int temp=sqrt(n);
+            int temp1=temp*temp;
+            if(temp1==n){
+                ll flag=0;
+                for(ll i=2;i<=sqrt(temp);i++){
+                    if(temp%i==0){
+                        return false;
+                    }
                 }
+                return true;
+            }
+            else{
+                return false;
             }
         }
-        return v;
     }
 };
+
 
 
 

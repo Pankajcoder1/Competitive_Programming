@@ -51,26 +51,36 @@ const ll mod2=998244353;
 
 
 //Add main code here
-
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> v(2,0);
-        for(int i=0;i<nums.size();i++)
-        {
-            for(int j=0;j<nums.size();j++)
-            {
-                if(i!=j&&(nums[i]+nums[j])==target)
-                {
-                    v[0]=i;
-                    v[1]=j;
-                    break;
-                }
-            }
+    void inorder(TreeNode* root,vector<int>& ans){
+        if(root==nullptr){
+            return ;
         }
-        return v;
+        inorder(root->left,ans);
+        ans.pb(root->val);
+        inorder(root->right,ans);
+        return ;
+    }
+    
+    vector<int> inorderTraversal(TreeNode* root) {
+        vl ans;
+        inorder(root,ans);
+        return ans;
     }
 };
+
 
 
 

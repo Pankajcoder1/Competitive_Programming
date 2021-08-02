@@ -54,21 +54,16 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> v(2,0);
-        for(int i=0;i<nums.size();i++)
-        {
-            for(int j=0;j<nums.size();j++)
-            {
-                if(i!=j&&(nums[i]+nums[j])==target)
-                {
-                    v[0]=i;
-                    v[1]=j;
-                    break;
-                }
+    long long minimumPerimeter(long long neededApples) {
+        long long sum=0;
+        for(long long i=1;i<=INT_MAX;i++){
+            long long no_of_apple=12*i*i;
+            sum+=no_of_apple;
+            if(sum>=neededApples){
+                return 8*i;
             }
         }
-        return v;
+        return 0;
     }
 };
 

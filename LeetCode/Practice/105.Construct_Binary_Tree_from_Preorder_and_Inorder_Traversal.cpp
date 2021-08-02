@@ -52,24 +52,42 @@ const ll mod2=998244353;
 
 //Add main code here
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> v(2,0);
-        for(int i=0;i<nums.size();i++)
-        {
-            for(int j=0;j<nums.size();j++)
-            {
-                if(i!=j&&(nums[i]+nums[j])==target)
-                {
-                    v[0]=i;
-                    v[1]=j;
-                    break;
-                }
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        return make_tree(0,0,sz(inorder)-1,preorder,inorder);
+    }
+    
+    TreeNode* make_tree(int preorder_start,int inorder_start,int end_inorder,vector<int> preorder,vector<int> inorder){
+        if(preorder_start>sz(preorder)-1||inorder_start>end_inorder){
+            return NULL;
+        }
+        TreeNode* root=new TreeNode(preorder[preorder_start]);
+        if(inorder_start==end_inorder){
+            return root;
+        }
+        int inorder_index=-1;
+        for(int i=inorder_start;i<=end_inorder;i++){
+            if(inorder[i]==root->val){
+                inorder_index=i;
             }
         }
-        return v;
+        root->left= make_tree(preorder_start+1,inorder_start,inorder_index-1,preorder,inorder);
+        root->right= make_tree(preorder_start+inorder_index-inorder_start+1,inorder_index+1,end_inorder,preorder,inorder);
+        return root;
     }
+    
 };
 
 

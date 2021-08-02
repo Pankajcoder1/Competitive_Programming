@@ -52,23 +52,61 @@ const ll mod2=998244353;
 
 //Add main code here
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> v(2,0);
-        for(int i=0;i<nums.size();i++)
-        {
-            for(int j=0;j<nums.size();j++)
-            {
-                if(i!=j&&(nums[i]+nums[j])==target)
-                {
-                    v[0]=i;
-                    v[1]=j;
-                    break;
-                }
-            }
+    bool isSymmetric(TreeNode* root) {
+        if(root->right==nullptr&&root->left==nullptr){
+            return true;
         }
-        return v;
+        if(root->right==nullptr&&root->left!=nullptr){
+            return false;
+        }
+        if(root->left==nullptr&&root->right!=nullptr){
+            return false;
+        }
+        if(root->right->val!=root->left->val){
+            return false;
+        }
+        queue<TreeNode*> q1,q2;
+        q1.push(root->left);
+        q2.push(root->right);
+        while(q1.size()){
+            queue<TreeNode*> tempq1,tempq2;
+            while(q1.size()){
+                TreeNode* left_side=q1.front();
+                q1.pop();
+                TreeNode* right_side=q2.front();
+                q2.pop();
+                if((left_side==nullptr&&right_side==nullptr)){
+                    continue;
+                }
+                if(left_side==nullptr||right_side==nullptr){
+                    return false;
+                }
+                if(left_side->val!=right_side->val){
+                    return false;
+                }
+                tempq1.push(left_side->left);
+                tempq1.push(left_side->right);
+                tempq2.push(right_side->right);
+                tempq2.push(right_side->left);
+            }
+            q1=tempq1;
+            q2=tempq2;
+        }
+        return true;
+
     }
 };
 

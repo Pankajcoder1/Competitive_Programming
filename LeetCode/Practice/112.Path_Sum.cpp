@@ -52,23 +52,28 @@ const ll mod2=998244353;
 
 //Add main code here
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> v(2,0);
-        for(int i=0;i<nums.size();i++)
-        {
-            for(int j=0;j<nums.size();j++)
-            {
-                if(i!=j&&(nums[i]+nums[j])==target)
-                {
-                    v[0]=i;
-                    v[1]=j;
-                    break;
-                }
-            }
+    
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(root==nullptr){
+            return false;
         }
-        return v;
+        if(root->right==nullptr&&root->left==nullptr&&root->val==targetSum){
+            return true;
+        }
+        return hasPathSum(root->left,targetSum-root->val)||hasPathSum(root->right,targetSum-root->val);
     }
 };
 

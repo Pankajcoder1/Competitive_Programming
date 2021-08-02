@@ -54,21 +54,22 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> v(2,0);
-        for(int i=0;i<nums.size();i++)
-        {
-            for(int j=0;j<nums.size();j++)
-            {
-                if(i!=j&&(nums[i]+nums[j])==target)
-                {
-                    v[0]=i;
-                    v[1]=j;
-                    break;
-                }
-            }
+    long long numberOfWeeks(vector<int>& milestones) {
+        long long n=sz(milestones);
+        long long ans=0;
+        long long maxo=0,sum=0;
+        for(auto x:milestones){
+            maxo=max(maxo,(long long)x);
+            sum+=x;
         }
-        return v;
+        sum-=maxo;
+        if(maxo<=(sum+1)){
+            ans=sum+maxo;
+        }
+        else{
+            ans=2*sum+1;
+        }
+        return ans;
     }
 };
 

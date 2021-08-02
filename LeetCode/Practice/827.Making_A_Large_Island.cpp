@@ -51,26 +51,67 @@ const ll mod2=998244353;
 
 
 //Add main code here
-
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> v(2,0);
-        for(int i=0;i<nums.size();i++)
-        {
-            for(int j=0;j<nums.size();j++)
-            {
-                if(i!=j&&(nums[i]+nums[j])==target)
-                {
-                    v[0]=i;
-                    v[1]=j;
-                    break;
+    unordered_map<int,int> color_size;
+    const int DIR[5] = {0, 1, 0, -1, 0};
+    void dfs(vector<vector<int>>& grid,int i,int j,int color_index,int n){
+        if(i>=n||j>=n||i<0||j<0){
+            return ;
+        }
+        if(grid[i][j]!=1){
+            return ;
+        }
+        grid[i][j]=color_index;
+        color_size[color_index]++;
+        for(ll z=0;z<4;z++){
+            dfs(grid,i+DIR[z],j+DIR[z+1],color_index,n);
+        }
+        return ;
+
+    }
+    
+    int largestIsland(vector<vector<int>>& grid) {
+        int n=sz(grid);
+        int maxo=0,color_index=2;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]!=0){
+                    dfs(grid,i,j,color_index,n);
+                    maxo=max(maxo,color_size[color_index]);
+                    color_index++;
                 }
             }
         }
-        return v;
+        
+        for(ll i=0;i<n;i++){
+            for(ll j=0;j<n;j++){
+                if(grid[i][j]!=0){
+                    continue;
+                }
+                else{
+                    set<int> side_color;
+                    for(int k=0;k<4;k++){
+                        int row=i+DIR[k],col=j+DIR[k+1];
+                        if(row>=n||col>=n||row<0||col<0){
+                            continue;
+                        }
+                        else{
+                            side_color.insert(grid[row][col]);
+                        }
+                    }
+                    int total_size=1;
+                    for(auto x:side_color){
+                        total_size+=color_size[x];
+                    }
+                    maxo=max(maxo,total_size);
+                }
+            }
+        }
+        return maxo;
     }
 };
+
 
 
 
