@@ -75,7 +75,7 @@ int main()
 	loop0(n-1)
 	{
 		cin>>temp;
-		sum2+=temp;
+		sum1-=temp;
 	}
-	cout<<abs(sum1-sum2)<<Endl;
+	cout<<sum1<<Endl;
 }
