@@ -73,7 +73,7 @@ int main()
 	cin>>s;
 	ll count=0,maxo=0;
 	char ch=s[0];
-	loop(i,0,s.length())
+	for(int i=0;i<s.length();i++)
 	{
 		if(s[i]==ch)
 			count++;

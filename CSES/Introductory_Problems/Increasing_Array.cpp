@@ -75,7 +75,7 @@ int main()
 	for(auto &S:v)
 		cin>>S;
 	ll sum=0;
-	loop(i,1,n)
+	for(ll i=1;i<n;i++)
 	{
 		if(v[i]<v[i-1])
 		{
