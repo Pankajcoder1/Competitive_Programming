@@ -69,8 +69,9 @@ A=65,Z=90,a=97,z=122
 
 int main()
 {
-	cc
-	{
+	ll test;
+	cin>>test;
+	while(test--){
 		ll y,x;
 		cin>>y>>x;
 		if(x>y)

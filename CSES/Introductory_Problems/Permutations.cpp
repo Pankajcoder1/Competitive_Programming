@@ -78,14 +78,15 @@ int main()
 	else
 	{
 		vl even,odd;
-		loop(i,1,n+1)
-		{
+		// vector<int> 
+		for(ll i=1;i<=n;i++){
 			if(i%2==0)
 				even.pb(i);
 			else
 				odd.pb(i);
 		}
 		// srtGreat(even);
+		// srtGreat(odd);
 		for(auto s:even)
 			cout<<s<<" ";
 		for(auto s:odd)
