@@ -19,3 +19,6 @@
 🔍 [Chessboard and Queens](https://cses.fi/problemset/task/1624)<br>
 🔍 [Digit Queries](https://cses.fi/problemset/task/2431)<br>
 🔍 [Grid Paths](https://cses.fi/problemset/task/1625)<br>
+
+# Solution
+> All Solution with step by step explanation (in hindi) are available at this [PlayList](https://www.youtube.com/playlist?list=PL-qFZbR0uFedl6LCG073jJQPWc_VIh8tc)
