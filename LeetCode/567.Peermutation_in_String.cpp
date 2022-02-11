@@ -82,18 +82,26 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    int subarraySum(vector<int>& nums, int k) {
-        int ans=0;
-        int n=sz(nums);
-        unordered_map<int,int> m;
-        m[0]=1;
-        int sum=0;
-        for(int i=0;i<n;i++){
-            sum+=nums[i];
-            ans+=m[sum-k];
-            m[sum]++;
+    bool checkInclusion(string s1, string s2) {
+        int n=sz(s1),m=sz(s2);
+        if(n>m) return false;
+        vector<int> first(26,0);
+        // dont use map
+        // map<char,int> first;
+        for(auto x:s1){
+            first[x-'a']++;
         }
-        return ans;
+        for(int i=n-1;i<m;i++){
+            vector<int> second(26,0);
+            for(int j=i+1-n;j<=i;j++){
+                second[s2[j]-'a']++;
+            }
+            if(second==first){
+                return true;
+            }
+        }
+
+        return false;
     }
 };
 
