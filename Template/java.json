@@ -40,7 +40,7 @@
 			"// Cp is nothing but only observation and mathematics.",
 			"// Change name of class here first, before compiling",
 			"\n",
-			"public class Cf{",
+			"public class $0{",
 			"	final static int mod1 = (int)1e9+7;",
     		"	final static int mod2 = 998244353;",
     		"	final static long INF = (long)1e18;\n",
@@ -49,30 +49,12 @@
 			"		int testcases = 1;",
 			"		testcases = fs.nextInt();",
 			"		for(int tt=0;tt<testcases;tt++){",
-			"			$0\n",
+			"			\n",
 			"		}",
 			"		return ;",
 			"	}",
 			"}",
 		],
-		"description": "java Snippet for Codeforces"
-	},
-	"LeetCode Snippet for Java": {
-		"prefix": [
-			"Leetcode",
-			"leetcode"
-		],
-		"body": [
-			"/** ",
-    		"	Developer: Pankaj Kumar",
-			"**/\n",
-			"// Experience :",
-			"// Cp is nothing but only observation and mathematics.",
-			"\n",
-			"// Add main code here",
-			"$0",
-			"\n",
-		],
-		"description": "Java template for leetcode"
+		"description": "Simple, basic java template"
 	}
 }
