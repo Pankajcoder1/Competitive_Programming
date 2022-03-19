@@ -51,30 +51,29 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    bool isValid(string s) {
-        stack<char> st;
-        int flag=0;
-        for(auto x:s)
-        {
-            if(x=='('||x=='{'||x=='[')
-                st.push(x);
-            else
-            {
-                if(st.size()>0)
-                {
-                    if((x==')'&&st.top()=='(')||(x=='}'&&st.top()=='{')||(x==']'&&st.top()=='['))
-                        st.pop();
-                    else
-                        return false;
-                }
-                else
-                    return false;
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        stack<int> s;
+        int pos1=0,pos2=0;
+        while(pos1<sz(pushed) && pos2<sz(popped)){
+            if(s.empty() || s.top()!=popped[pos2]){
+                s.push(pushed[pos1]);
+                pos1++;
+            }
+            if(s.top()==popped[pos2]){
+                s.pop();
+                pos2++;
             }
         }
-        if(st.size()==0)
-            return true;
-        else
-            return false;
+        while(pos2<sz(popped)){
+            if(s.size()&&s.top()==popped[pos2]){
+                s.pop();
+                pos2++;
+            }
+            else{
+                break;
+            }
+        }
+        return s.empty();
     }
 };
 

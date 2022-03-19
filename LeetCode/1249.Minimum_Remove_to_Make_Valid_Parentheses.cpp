@@ -51,30 +51,40 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    bool isValid(string s) {
-        stack<char> st;
-        int flag=0;
-        for(auto x:s)
-        {
-            if(x=='('||x=='{'||x=='[')
-                st.push(x);
-            else
-            {
-                if(st.size()>0)
-                {
-                    if((x==')'&&st.top()=='(')||(x=='}'&&st.top()=='{')||(x==']'&&st.top()=='['))
-                        st.pop();
-                    else
-                        return false;
+    string minRemoveToMakeValid(string s) {
+        string ans="";
+        stack<pair<char,int>> st;
+        for(int i=0;i<s.length();i++){
+            if(s[i]>='a'&&s[i]<='z'){
+                continue;
+            }
+            else{
+                if(s[i]=='('){
+                    st.push({s[i],i});
                 }
-                else
-                    return false;
+                else{
+                    if(st.empty()){
+                        s[i]=',';
+                    }
+                    else if(st.top().ff=='('){
+                        st.pop();
+                    }
+                    else{
+                        s[i]=',';
+                    }
+                }
             }
         }
-        if(st.size()==0)
-            return true;
-        else
-            return false;
+        while(!st.empty()){
+            s[st.top().ss]=',';
+            st.pop();
+        }
+        for(auto x:s){
+            if(x!=','){
+                ans+=x;
+            }
+        }
+        return ans;
     }
 };
 
