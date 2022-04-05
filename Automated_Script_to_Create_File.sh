@@ -1,3 +1,5 @@
+# Developer: Pankaj Kumar
+
 # command to run file is bash -f hello.sh
 #!/bin/bash
 
@@ -10,36 +12,51 @@ if [ "$platform_name" == "l" ] || [ "$platform_name" == "L" ]
 # otherwise it will give error
 then
     platform_name="Leetcode"
-    read_file="LeetCode.cpp"
 
 elif [ "$platform_name" == "a" ] || [ "$platform_name" == "A" ]
 then
     platform_name="AtCoder"
-    read_file="Cf.cpp"
 
 elif [ "$platform_name" == "c" ] || [ "$platform_name" == "C" ]
 then
     platform_name="Codeforces"
-    read_file="Cf.cpp"
 
 else
-    platform_name="unkown"
-    read_file="Cf.cpp"
+    echo "You want to mention platform name, Y/N ? "
+    read answer
+    if [ "$answer" == "Y" ] || [ "$answer" == "y" ]
+    then
+        echo "Enter platform name: "
+        read platform_name
+    else
+        echo "deafult platform name is 'unknown' "
+        platform_name="unkown"
+    fi
 fi
 
 
+# -----------------------------------------------------------------------------------
+
+
+# assign read file
+if [ "$platform_name" == "Leetcode" ]
+then
+    read_file="LeetCode.cpp"
+
+else
+    read_file="Cf.cpp"
+fi
+
+# -----------------------------------------------------------------------------------
+
 
 # to create file with given name
-# touch ch.txt
 echo "how many file you want to create"
 read no_of_file
-echo "platform name is $platform_name"
 
-# for loop
 for i in $(seq 1 $no_of_file)
 do
     filename="$platform_name"_"$i.cpp"
-    echo "file name is "$filename
     touch $filename
     command_to_run=`cat $read_file`
     # command which you want to run
