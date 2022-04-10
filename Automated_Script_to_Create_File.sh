@@ -43,6 +43,10 @@ if [ "$platform_name" == "Leetcode" ]
 then
     read_file="LeetCode.cpp"
 
+elif [ "$platform_name" == "AtCoder" ]
+then
+    read_file="../../Atcoder.cpp"
+
 else
     read_file="Cf.cpp"
 fi
