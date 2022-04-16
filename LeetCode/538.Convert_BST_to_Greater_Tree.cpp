@@ -48,37 +48,35 @@ const ll mod2=998244353;
 
 //Add main code here
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
-        int n=mat.size(),m=mat[0].size();
-        vector<vector<bool>> check(n,vector<bool>(m,false));
-        queue<pair<int,int>> q;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(mat[i][j]==0){
-                    q.push({i,j});
-                }
-                else{
-                    mat[i][j]=INT_MAX/2;
-                }
-            }
+    TreeNode* solve(TreeNode* root,int& sum){
+        if(root==NULL){
+            return root;
         }
-        vector<int> dx={-1,0,1,0};
-        vector<int> dy={0,1,0,-1};
-        while(q.size()>0){
-            int x=q.front().ff,y=q.front().ss;
-            check[x][y]=true;
-            q.pop();
-            for(int i=0;i<4;i++){
-                int new_x=x+dx[i],new_y=y+dy[i];
-                if(new_x>=0 && new_x<n && new_y>=0 && new_y<m && check[new_x][new_y]==false){
-                    mat[new_x][new_y]=min(mat[new_x][new_y],mat[x][y]+1);
-                    q.push({new_x,new_y});
-                }
-            }
-        }
-        return mat;
+        solve(root->right,sum);
+        sum+=root->val;
+        root->val=sum;
+        solve(root->left,sum);
+        return root;
+    }
+
+    TreeNode* convertBST(TreeNode* root) {
+        TreeNode* ans=NULL;
+        int sum=0;
+        ans=solve(root,sum);
+        return ans;
     }
 };
 

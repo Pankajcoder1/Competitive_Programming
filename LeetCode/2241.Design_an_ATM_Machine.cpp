@@ -48,39 +48,75 @@ const ll mod2=998244353;
 
 //Add main code here
 
-class Solution {
+class ATM {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
-        int n=mat.size(),m=mat[0].size();
-        vector<vector<bool>> check(n,vector<bool>(m,false));
-        queue<pair<int,int>> q;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(mat[i][j]==0){
-                    q.push({i,j});
-                }
-                else{
-                    mat[i][j]=INT_MAX/2;
-                }
-            }
+    map<long,long> m;
+    ATM() {
+        m[20]=0;
+        m[50]=0;
+        m[100]=0;
+        m[200]=0;
+        m[500]=0;
+    }
+    
+    void deposit(vector<int> banknotesCount) {
+        m[20]+=banknotesCount[0];
+        m[50]+=banknotesCount[1];
+        m[100]+=banknotesCount[2];
+        m[200]+=banknotesCount[3];
+        m[500]+=banknotesCount[4];
+    }
+    
+    vector<int> withdraw(int amount) {
+        vector<int>v(5,0);
+        ll ans=0;
+
+
+        ans=amount/500;
+        ans=min((ll)ans,(ll)m[500]);
+        v[4]=ans;
+        amount-=ans*500;
+
+
+        ans=amount/200;
+        ans=min((ll)ans,(ll)m[200]);
+        v[3]=ans;
+        amount-=ans*200;
+
+        ans=amount/100;
+        ans=min((ll)ans,(ll)m[100]);
+        v[2]=ans;
+        amount-=ans*100;
+
+        ans=amount/50;
+        ans=min((ll)ans,(ll)m[50]);
+        v[1]=ans;
+        amount-=ans*50;
+
+        ans=amount/20;
+        ans=min((ll)ans,(ll)m[20]);
+        v[0]=ans;
+        amount-=ans*20;
+        
+        if(amount!=0){
+            return {-1};
         }
-        vector<int> dx={-1,0,1,0};
-        vector<int> dy={0,1,0,-1};
-        while(q.size()>0){
-            int x=q.front().ff,y=q.front().ss;
-            check[x][y]=true;
-            q.pop();
-            for(int i=0;i<4;i++){
-                int new_x=x+dx[i],new_y=y+dy[i];
-                if(new_x>=0 && new_x<n && new_y>=0 && new_y<m && check[new_x][new_y]==false){
-                    mat[new_x][new_y]=min(mat[new_x][new_y],mat[x][y]+1);
-                    q.push({new_x,new_y});
-                }
-            }
-        }
-        return mat;
+
+        m[20]-=v[0];
+        m[50]-=v[1];
+        m[100]-=v[2];
+        m[200]-=v[3];
+        m[500]-=v[4];
+        return v;
     }
 };
+
+/**
+ * Your ATM object will be instantiated and called as such:
+ * ATM* obj = new ATM();
+ * obj->deposit(banknotesCount);
+ * vector<int> param_2 = obj->withdraw(amount);
+ */
 
 
 /* -----------------END OF PROGRAM --------------------*/

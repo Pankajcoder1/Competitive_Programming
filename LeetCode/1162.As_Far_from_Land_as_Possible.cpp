@@ -50,35 +50,30 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
-        int n=mat.size(),m=mat[0].size();
-        vector<vector<bool>> check(n,vector<bool>(m,false));
-        queue<pair<int,int>> q;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(mat[i][j]==0){
-                    q.push({i,j});
+    int maxDistance(vector<vector<int>>& grid) {
+        vector<pair<int,int>> water,land;
+        int maxo=0;
+        for(ll i=0;i<sz(grid);i++){
+            for(ll j=0;j<sz(grid[0]);j++){
+                if(grid[i][j]==1){
+                    land.pb(mp(i,j));
                 }
                 else{
-                    mat[i][j]=INT_MAX/2;
+                    water.pb(mp(i,j));
                 }
             }
         }
-        vector<int> dx={-1,0,1,0};
-        vector<int> dy={0,1,0,-1};
-        while(q.size()>0){
-            int x=q.front().ff,y=q.front().ss;
-            check[x][y]=true;
-            q.pop();
-            for(int i=0;i<4;i++){
-                int new_x=x+dx[i],new_y=y+dy[i];
-                if(new_x>=0 && new_x<n && new_y>=0 && new_y<m && check[new_x][new_y]==false){
-                    mat[new_x][new_y]=min(mat[new_x][new_y],mat[x][y]+1);
-                    q.push({new_x,new_y});
-                }
-            }
+        if(sz(land)==0 || sz(water)==0){
+            return -1;
         }
-        return mat;
+        for(auto x:water){
+            int dist=INT_MAX;
+            for(auto y:land){
+                dist=min(dist,abs(x.first-y.first)+abs(x.second-y.second));
+            }
+            maxo=max(maxo,dist);
+        }
+        return maxo;
     }
 };
 

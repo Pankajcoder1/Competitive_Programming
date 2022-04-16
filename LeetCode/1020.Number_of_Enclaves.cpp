@@ -50,35 +50,45 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
-        int n=mat.size(),m=mat[0].size();
-        vector<vector<bool>> check(n,vector<bool>(m,false));
-        queue<pair<int,int>> q;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(mat[i][j]==0){
-                    q.push({i,j});
+    void dfs(vector<vector<int>>& arr,int i,int j){
+        if(i>=arr.size() or i<0 or j<0 or j>=arr[0].size() or arr[i][j]==0 or arr[i][j]==2)
+            return;
+        
+        arr[i][j]=2;
+        
+        dfs(arr,i,j+1);
+        dfs(arr,i,j-1);
+        dfs(arr,i+1,j);
+        dfs(arr,i-1,j);
+    }
+    int numEnclaves(vector<vector<int>>& arr) {
+        int ans=0;
+        for(int i=0;i<arr.size();i++){
+            if(i==0 or i==arr.size()-1){
+                for(int j=0;j<arr[i].size();j++){
+                    if(arr[i][j]==1){
+                        dfs(arr,i,j);
+                    }
                 }
-                else{
-                    mat[i][j]=INT_MAX/2;
+            }
+            
+            if(arr[i][0]==1){
+                dfs(arr,i,0);
+            }
+            
+            if(arr[i][arr[i].size()-1]==1){
+                dfs(arr,i,arr[i].size()-1);
+            }
+        }
+        for(int i=0;i<arr.size();i++){
+            for(int j=0;j<arr[i].size();j++){
+                if(arr[i][j]==1){
+                    ans++;
                 }
             }
         }
-        vector<int> dx={-1,0,1,0};
-        vector<int> dy={0,1,0,-1};
-        while(q.size()>0){
-            int x=q.front().ff,y=q.front().ss;
-            check[x][y]=true;
-            q.pop();
-            for(int i=0;i<4;i++){
-                int new_x=x+dx[i],new_y=y+dy[i];
-                if(new_x>=0 && new_x<n && new_y>=0 && new_y<m && check[new_x][new_y]==false){
-                    mat[new_x][new_y]=min(mat[new_x][new_y],mat[x][y]+1);
-                    q.push({new_x,new_y});
-                }
-            }
-        }
-        return mat;
+        
+        return ans;
     }
 };
 

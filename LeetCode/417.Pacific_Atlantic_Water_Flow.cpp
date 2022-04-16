@@ -50,35 +50,50 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
-        int n=mat.size(),m=mat[0].size();
-        vector<vector<bool>> check(n,vector<bool>(m,false));
-        queue<pair<int,int>> q;
+    vector<vector<int> > mat;
+    bool po,ao;
+    set<pair<int,int> > s;
+    void dfs(int x,int y){
+        // cout<<x<<' '<<y<<endl;
+        if(x==0 || y==0) {
+            ao=true;
+        }
+        if(x==mat.size()-1 || y==mat[0].size()-1){
+            po=true;
+        }
+        if(x>0 && mat[x-1][y]<=mat[x][y] && s.find(make_pair(x-1,y))==s.end()){
+            s.insert(make_pair(x-1,y));
+            dfs(x-1,y);
+        }
+        if(x<mat.size()-1 && mat[x+1][y]<=mat[x][y] && s.find(make_pair(x+1,y))==s.end()){
+            s.insert(make_pair(x+1,y));
+            dfs(x+1,y);
+        }
+        if(y>0 && mat[x][y-1]<=mat[x][y] && s.find(make_pair(x,y-1))==s.end()){
+            s.insert(make_pair(x,y-1));
+            dfs(x,y-1);
+        }
+        if(y<mat[0].size()-1 && mat[x][y+1]<=mat[x][y] && s.find(make_pair(x,y+1))==s.end()){
+            s.insert(make_pair(x,y+1));
+            dfs(x,y+1);
+        }
+    }
+    
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+        vector<vector<int> > ans;
+        mat=heights;
+        int n=heights.size();
+        int m=heights[0].size();
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                if(mat[i][j]==0){
-                    q.push({i,j});
-                }
-                else{
-                    mat[i][j]=INT_MAX/2;
-                }
+                s.clear();
+                po=false;
+                ao=false;
+                dfs(i,j);
+                if(ao && po) ans.push_back({i,j});
             }
         }
-        vector<int> dx={-1,0,1,0};
-        vector<int> dy={0,1,0,-1};
-        while(q.size()>0){
-            int x=q.front().ff,y=q.front().ss;
-            check[x][y]=true;
-            q.pop();
-            for(int i=0;i<4;i++){
-                int new_x=x+dx[i],new_y=y+dy[i];
-                if(new_x>=0 && new_x<n && new_y>=0 && new_y<m && check[new_x][new_y]==false){
-                    mat[new_x][new_y]=min(mat[new_x][new_y],mat[x][y]+1);
-                    q.push({new_x,new_y});
-                }
-            }
-        }
-        return mat;
+        return ans;
     }
 };
 
