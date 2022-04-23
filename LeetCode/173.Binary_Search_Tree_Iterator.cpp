@@ -59,27 +59,40 @@ const ll mod2=998244353;
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
+class BSTIterator {
 public:
-    int ans=0;
-    void inorder(TreeNode* root,int& k){
-        if(root==NULL){
-            return ;
-        }
-        inorder(root->left,k);
-        k--;
-        if(k==0){
-            ans=root->val;
-        }
-        // cout<<root->val<<" ";
-        inorder(root->right,k);
+    vector<int> ans;
+    int pos;
+    void inorder(TreeNode *root)
+    {
+        if(root==NULL) return;
+        inorder(root->left);
+        ans.push_back(root->val);
+        inorder(root->right);
     }
-
-    int kthSmallest(TreeNode* root, int k) {
-        inorder(root,k);
-        return ans;
+    
+    
+    
+    BSTIterator(TreeNode* root) {
+    pos=0;
+        inorder(root);
+    }
+    
+    int next() {
+        return ans[pos++];
+    }
+    
+    bool hasNext() {
+        return ans.size()!=pos;
     }
 };
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator* obj = new BSTIterator(root);
+ * int param_1 = obj->next();
+ * bool param_2 = obj->hasNext();
+ */
 
 
 /* -----------------END OF PROGRAM --------------------*/

@@ -48,38 +48,33 @@ const ll mod2=998244353;
 
 //Add main code here
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
+class MyHashSet {
 public:
-    int ans=0;
-    void inorder(TreeNode* root,int& k){
-        if(root==NULL){
-            return ;
-        }
-        inorder(root->left,k);
-        k--;
-        if(k==0){
-            ans=root->val;
-        }
-        // cout<<root->val<<" ";
-        inorder(root->right,k);
-    }
+    unordered_map<int,int> mp;
 
-    int kthSmallest(TreeNode* root, int k) {
-        inorder(root,k);
-        return ans;
+    MyHashSet() {
+    }
+    
+    void add(int key) {
+        mp[key]=1;
+    }
+    
+    void remove(int key) {
+        mp.erase(key);
+    }
+    
+    bool contains(int key) {
+        return mp[key]==1;
     }
 };
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet* obj = new MyHashSet();
+ * obj->add(key);
+ * obj->remove(key);
+ * bool param_3 = obj->contains(key);
+ */
 
 
 /* -----------------END OF PROGRAM --------------------*/
