@@ -1,17 +1,22 @@
 /*
     written by Pankaj Kumar.
     country:-INDIA
-    Institute: National Institute of Technology, Uttarakhand
 */
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace std;
+using namespace __gnu_pbds;
 typedef long long ll ;
 typedef unsigned long long ull;
-typedef vector<int> vl;
-typedef vector<vector<int>> vvl;
+typedef vector<ll> vl;
+typedef vector<vector<ll>> vvl;
 #define speed cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
 /*  Abbrevations  */
 #define ff first
 #define ss second
 #define mp make_pair
+#define line cout<<endl;
 #define pb push_back
 // loops
 #define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
@@ -26,18 +31,34 @@ typedef vector<vector<int>> vvl;
 #define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} cout<<endl;
 #define precision(x) cout<<fixed<<setprecision(x);
 #define sz(V) ll(V.size())
-
-
-/* ascii value
-A=65,Z=90,a=97,z=122
+// function
+ll power(ll x,ll y,ll mod)
+{
+    ll res=1;
+    // x=x%mod;
+    while(y>0){
+        if(y%2==1){
+            res*=x;
+            // res=res%mod;
+        }
+        y/=2; x*=x; // x=x%mod;
+    }
+    return res;
+}
+ll str_to_num(string s){
+    return stoi(s);
+}
+string num_to_str(ll num){
+    return to_string(num);
+}
+/* ascii value 
+    A=65,Z=90,a=97,z=122
 */
-
 /* Some syntax 
-//Syntax to create a min heap for priority queue
-//priority_queue <int, vector<int>, greater<int>>pq;
+    //Syntax to create a min heap for priority queue
+    //priority_queue <int, vector<int>, greater<int>>pq;
 */
 /*  --------------------MAIN PROGRAM----------------------------*/
-// to run ctrl+b
 const ll INF=1e18;
 const ll mod1=1e9+7;
 const ll mod2=998244353;
@@ -46,50 +67,39 @@ const ll mod2=998244353;
 // sort, greedy, binary search, two pointer
 // transform into graph
 
+
 // Experience :
 // Cp is nothing but only observation and mathematics.
-
-
-//Add main code here
-
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        // approach 1
-
-        // vector<int> v(2,0);
-        // for(int i=0;i<nums.size();i++)
-        // {
-        //     for(int j=0;j<nums.size();j++)
-        //     {
-        //         if(i!=j&&(nums[i]+nums[j])==target)
-        //         {
-        //             v[0]=i;
-        //             v[1]=j;
-        //             break;
-        //         }
-        //     }
-        // }
-        // return v;
-
-        // approach 2
-        map<int,int> mp;
-        for(int i=0;i<nums.size();i++){
-            if(mp[target-nums[i]]>0){
-                return {mp[target-nums[i]]-1,i};
-            }
-            mp[nums[i]]=i+1;
-        }
-        return {0,0};
-
+ll solve(){
+    string s;
+    cin>>s;
+    ll sum1=s[0]-'0'+s[1]-'0'+s[2]-'0';
+    ll sum2=s[3]-'0'+s[4]-'0'+s[5]-'0';
+    if(sum1==sum2){
+        yes
     }
-};
-
-
-
+    else{
+        no
+    }
+    return 0;
+}
+int main(){
+    speed;
+    /*
+        #ifndef ONLINE_JUDGE
+        freopen("input.txt","r",stdin);
+        freopen("output.txt","w",stdout);
+    #endif 
+    */
+    ll TestCase=1;
+    cin>>TestCase;
+    while(TestCase--){
+        solve();
+    }
+}
 /* -----------------END OF PROGRAM --------------------*/
 /*
-* stuff you should look before submission
+* stuff you should look before submission 
 * constraint and time limit
 * int overflow
 * special test case (n=0||n=1||n=2)
