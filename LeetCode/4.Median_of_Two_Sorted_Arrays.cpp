@@ -50,37 +50,44 @@ const ll mod2=998244353;
 
 class Solution {
 public:
-    int maximumWhiteTiles(vector<vector<int>>& a, int k) {
-        int n = a.size();
-        vector<pair<int, int>> b(n);
-        vector<long long> c(n + 1);
-        for (int i = 0 ; i < n ; ++ i) {
-            b[i] = {a[i][0], a[i][1]};
-        }
-        sort(b.begin() , b.end());
-        for (int i = 0 ; i < n ; ++ i) {
-            c[i + 1 ] = c[i] + (b[i].second - b[i].first + 1);
-        }
-        
-        int res = 0;
-        for (int i = 0 ; i < n ; ++ i) {
-            int x = b[i].first;
-            int j = upper_bound(b.begin(), b.end(), make_pair(x + k - 1, 1 << 30)) - b.begin() - 1;
-            int len = 0;
-            if (j >= 0 && b[j].second >= x + k - 1) {
-                len += x + k - 1 - b[j].first + 1; 
-                -- j;
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        double ans = 0.0;
+        int n = nums1.size() + nums2.size();
+        vector<int> nums(n);
+        int i = 0, j = 0, k = 0;
+        while(i < nums1.size() || j<nums2.size()){
+            if(i<nums1.size() && j<nums2.size()){
+                if(nums1[i] < nums2[j]){
+                    nums[k] = nums1[i];
+                    i++;
+                }
+                else{
+                    nums[k] = nums2[j];
+                    j++;
+                }
+                k++;
             }
-            len += c[j + 1] - c[i];
-            printf("%d %d\n" , i , len);
-            res = max(res, len);
+            else if(i<nums1.size()){
+                nums[k] = nums1[i];
+                i++;
+                k++;
+            }
+            else if(j<nums2.size()){
+                nums[k] = nums2[j];
+                j++;
+                k++;
+            }
         }
-        
-        return res;
+        printv(nums);
+        if(n&1){
+            ans = nums[n/2];
+        }
+        else{
+            ans = (nums[n/2] + nums[n/2-1])/2.0;
+        }
+        return ans;
     }
 };
-
-
 
 
 /* -----------------END OF PROGRAM --------------------*/
