@@ -8,6 +8,7 @@
 using namespace std;
 using namespace __gnu_pbds;
 typedef long long ll ;
+typedef unsigned long long ull;
 typedef vector<ll> vl;
 typedef vector<vector<ll>> vvl;
 #define speed cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
@@ -17,6 +18,8 @@ typedef vector<vector<ll>> vvl;
 #define mp make_pair
 #define line cout<<endl;
 #define pb push_back
+// loops
+#define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
 // Some print
 #define no cout<<"NO"<<endl;
 #define yes cout<<"YES"<<endl;
@@ -25,7 +28,7 @@ typedef vector<vector<ll>> vvl;
 #define srt(V) sort(all(V))
 #define srtGreat(V) sort(all(V),greater<ll>())
 // some extra
-#define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} line;
+#define printv(v) for(ll i=0;i<ll(v.size());i++){cout<<v[i]<<" ";} cout<<endl;
 #define precision(x) cout<<fixed<<setprecision(x);
 #define sz(V) ll(V.size())
 // function
@@ -33,10 +36,8 @@ ll power(ll x,ll y,ll mod)
 {
     ll res=1;
     // x=x%mod;
-    while(y>0)
-    {
-        if(y%2==1)
-        {
+    while(y>0){
+        if(y%2==1){
             res*=x;
             // res=res%mod;
         }
@@ -44,29 +45,20 @@ ll power(ll x,ll y,ll mod)
     }
     return res;
 }
-ll str_to_num(string s)
-{
-    stringstream pk(s);
-    ll num;
-    pk>>num;
-    return num;
+ll str_to_num(string s){
+    return stoi(s);
 }
-string num_to_str(ll num)
-{
+string num_to_str(ll num){
     return to_string(num);
 }
-// datatype definination
-#define ordered_set tree<ll,null_type,less<ll>,rb_tree_tag,tree_order_statistics_node_update>
-/* ascii value
-A=65,Z=90,a=97,z=122
+/* ascii value 
+    A=65,Z=90,a=97,z=122
 */
-
 /* Some syntax 
-//Syntax to create a min heap for priority queue
-//priority_queue <int, vector<int>, greater<int>>pq;
+    //Syntax to create a min heap for priority queue
+    //priority_queue <int, vector<int>, greater<int>>pq;
 */
 /*  --------------------MAIN PROGRAM----------------------------*/
-// to run ctrl+b
 const ll INF=1e18;
 const ll mod1=1e9+7;
 const ll mod2=998244353;
@@ -78,62 +70,83 @@ const ll mod2=998244353;
 
 // Experience :
 // Cp is nothing but only observation and mathematics.
-
-
 ll solve(){
-    int n,q,ans=0;
-    cin>>n>>q;
-    string s;
-    cin>>s;
-    vector<vector<int>> prefix(n+1,vector<int>(26,0));
+    int n;
+    cin>>n;
+    int zero=0;
+    vector<int> v,pos,neg;
     for(int i=0;i<n;i++){
-        int temp=s[i]-'A';
-        for(int j=0;j<26;j++){
-            prefix[i+1][j]=prefix[i][j];
+        int x;
+        cin>>x;
+        if(x==0){
+            zero++;
         }
-        prefix[i+1][temp]++;
-    }
-    while(q--){
-        int l,r;
-        cin>>l>>r;
-        l--;
-        r--;
-        int even=0,odd=0,total=r-l+1;
-        for(int i=0;i<26;i++){
-            int temp = prefix[r+1][i]-prefix[l][i];
-            if(temp>0 && temp&1){
-                odd++;
-            }
-            else if(temp>0 && !(temp&1)){
-                even++;
-            }
+        else if(x>0){
+            pos.pb(x);
         }
-        if(odd==0 && even){
-            ans++;
-        }
-        else if(total&1 && odd==1){
-            ans++;
+        else{
+            neg.pb(x);
         }
     }
-    cout<<ans<<endl;
+    if(pos.size()>2 || neg.size() >2){
+        cout<<"NO"<<endl;
+        return 0;
+    }
+    if(zero>2){
+        zero=2;
+    }
+    while(zero>0){
+        v.pb(0);
+        zero--;
+    }
+    for(auto x:pos){
+        v.pb(x);
+    }
+    for(auto x:neg){
+        v.pb(x);
+    }
+
+    n=v.size();
+
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            for(int k=j+1;k<n;k++){
+                int sum=v[i]+v[j]+v[k];
+                bool flag=false;
+                for(int pos=0;pos<n;pos++){
+                    if(v[pos]==sum){
+                        flag=true;
+                        break;
+                    }
+                }
+                if(flag==false){
+                    no
+                    return 0;
+                }
+            }
+        }
+    }
+    yes
+
     return 0;
 }
 int main(){
     speed;
-    /* #ifndef ONLINE_JUDGE
+    /*
+        #ifndef ONLINE_JUDGE
         freopen("input.txt","r",stdin);
         freopen("output.txt","w",stdout);
-    #endif */
+    #endif 
+    */
     ll TestCase=1;
     cin>>TestCase;
-    for(ll i=1;i<=TestCase;i++){
-        cout<<"Case #"<<i<<": ";
+    while(TestCase--){
         solve();
     }
 }
 /* -----------------END OF PROGRAM --------------------*/
 /*
-* stuff you should look before submission
+* stuff you should look before submission 
 * constraint and time limit
 * int overflow
 * special test case (n=0||n=1||n=2)
