@@ -28,31 +28,28 @@ const ll mod2=998244353;
 class Solution
 {
 public:
-    vector<string> ans;
-    void solve(int open_bracket, int close_bracket, string str)
+    bool checkDistances(string s, vector<int> &distance)
     {
-        if (open_bracket == 0 && close_bracket == 0)
-        {
-            ans.push_back(str);
-            return;
+        vector<int> v(26, -1);
+        for(int i=0;i<s.size();i++){
+            int temp=s[i]-'a';
+            if(v[temp]==-1){
+                v[temp]=i;
+            }
+            else{
+                v[temp]=i-v[temp]-1;
+            }
         }
-        if (open_bracket - 1 >= 0 && close_bracket >= open_bracket)
-        {
-            solve(open_bracket - 1, close_bracket, str + '(');
+        for(int i=0;i<26;i++){
+            if(v[i]==-1){
+                v[i]=distance[i];
+            }
         }
-        if (close_bracket - 1 >= 0 && close_bracket >= open_bracket)
-        {
-            solve(open_bracket, close_bracket - 1, str + ')');
-        }
-        return;
-    }
-
-    vector<string> generateParenthesis(int n)
-    {
-        int open_bracket = n, close_bracket = n;
-        string str = "";
-        solve(open_bracket, close_bracket, str);
-        return ans;
+        // for(auto x:v){
+        //     cout<<x<<" ";
+        // }
+        // cout<<endl;
+        return v==distance;
     }
 };
 
