@@ -2,43 +2,40 @@
     written by Pankaj Kumar.
     country:-INDIA
 */
-typedef long long ll ;
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
 
 
 /* ascii value
 A=65,Z=90,a=97,z=122
 */
 
-/*  --------------------MAIN PROGRAM----------------------------*/
-// to run ctrl+b
-const ll INF=1e18;
-const ll mod1=1e9+7;
-const ll mod2=998244353;
 // Techniques :
 // divide into cases, brute force, pattern finding
 // sort, greedy, binary search, two pointer
 // transform into graph
 
-// Experience :
-// Cp is nothing but only observation and mathematics.
 
-
-//Add main code here
-
-class Solution
-{
-public:
-    void reverseString(vector<char> &s)
-    {
-        int n = s.size();
-        for (int i = 0; i < n / 2; i++)
-        {
-            swap(s[i], s[n - i - 1]);
-        }
-        return ;
+int solve(){
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    for(int i=0;i<n;i++){
+        cin>>v[i];
     }
-};
-
+    cout<<3*(10-n)+(9-n)<<endl;
+    return 0;
+}
+int main()
+{
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
+        solve();
+    }
+    return 0;
+}
 /* -----------------END OF PROGRAM --------------------*/
 /*
 * stuff you should look before submission
