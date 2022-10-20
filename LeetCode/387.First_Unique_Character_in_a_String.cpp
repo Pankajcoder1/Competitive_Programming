@@ -28,12 +28,17 @@ const ll mod2=998244353;
 class Solution
 {
 public:
-    bool isPowerOfThree(int n)
+    int firstUniqChar(string s)
     {
-        while(n%3==0){
-            n/=3;
+        map<int,int> m;
+        for(int i=0;i<s.size();i++){
+            m[s[i]]++;
         }
-        return n==1;
+        for(int i=0;i<s.size();i++){
+            if(m[s[i]]==1)
+                return i;
+        }
+        return -1;
     }
 };
 

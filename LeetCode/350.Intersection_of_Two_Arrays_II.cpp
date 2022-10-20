@@ -28,12 +28,20 @@ const ll mod2=998244353;
 class Solution
 {
 public:
-    bool isPowerOfThree(int n)
+    vector<int> intersect(vector<int> &nums1, vector<int> &nums2)
     {
-        while(n%3==0){
-            n/=3;
+        map<int,int> m;
+        for(int i=0;i<nums1.size();i++){
+            m[nums1[i]]++;
         }
-        return n==1;
+        vector<int> ans;
+        for(int i=0;i<nums2.size();i++){
+            if(m[nums2[i]]>0){
+                ans.push_back(nums2[i]);
+                m[nums2[i]]--;
+            }
+        }
+        return ans;
     }
 };
 

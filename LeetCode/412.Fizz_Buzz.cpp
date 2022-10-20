@@ -28,12 +28,24 @@ const ll mod2=998244353;
 class Solution
 {
 public:
-    bool isPowerOfThree(int n)
+    vector<string> fizzBuzz(int n)
     {
-        while(n%3==0){
-            n/=3;
+        vector<string> ans;
+        for(int i=1;i<=n;i++){
+            if(i%3==0&&i%5==0){
+                ans.push_back("FizzBuzz");
+            }
+            else if(i%3==0){
+                ans.push_back("Fizz");
+            }
+            else if(i%5==0){
+                ans.push_back("Buzz");
+            }
+            else{
+                ans.push_back(to_string(i));
+            }
         }
-        return n==1;
+        return ans;
     }
 };
 
