@@ -32,7 +32,6 @@ public:
         int n = costs.size();
 
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
-        vector<bool> check(n,false);
 
         int s=0,e=n-1;
         for(int i=0;i<candidates;i++)
@@ -55,7 +54,6 @@ public:
             auto temp1=pq.top();
             ans+=temp1.first;
             pq.pop();
-            check[temp1.second]=true;
             if(temp1.second<s && s<=e){
                 pq.push({costs[s],s});
                 s++;
