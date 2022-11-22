@@ -1,6 +1,6 @@
 /*
-	written by Pankaj Kumar.
-	country:-INDIA
+    written by Pankaj Kumar.
+    country:-INDIA
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -8,7 +8,7 @@ typedef long long ll;
 
 
 /* ascii value
-	A=65,Z=90,a=97,z=122
+A=65,Z=90,a=97,z=122
 */
 
 // Techniques :
@@ -16,18 +16,21 @@ typedef long long ll;
 // sort, greedy, binary search, two pointer
 // transform into graph
 
+
+int solve(){
+    int a,b,c;
+    cin>>a>>b>>c;
+    cout<<(a+b+c-max({a,b,c})-min({a,b,c}))<<endl;
+    return 0;
+}
 int main()
 {
-	int n;
-	cin >> n;
-	set<int> s;
-	int temp;
-	for(int i=0;i<n;i++)
-	{
-		cin >> temp;
-		s.insert(temp);
-	}
-	cout<<s.size()<<endl;
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
+        solve();
+    }
+    return 0;
 }
 /* -----------------END OF PROGRAM --------------------*/
 /*
