@@ -568,7 +568,7 @@
 			"}",
 			"int main()",
 			"{",
-			"	long long testCase;",
+			"	int testCase=1;",
     		"	cin>>testCase;",
     		"	while(testCase--){",
 			"		solve();",
