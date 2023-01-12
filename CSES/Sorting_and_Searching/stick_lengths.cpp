@@ -16,6 +16,17 @@ int solve(){
 	}
 	sort(v.begin(), v.end());
 	ll avg = v[n/2];
+
+	// give same result in this way also
+	// if (n & 1)
+	// {
+	// 	avg = v[n / 2];
+	// }
+	// else
+	// {
+	// 	avg = v[(n / 2) - 1];
+	// }
+	
 	ll res = 0;
 	for(int i=0;i<n;i++)
 	{
