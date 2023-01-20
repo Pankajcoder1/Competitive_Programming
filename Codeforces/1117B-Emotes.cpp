@@ -78,6 +78,7 @@ int main()
     cin>>n>>m>>k;
     vl v(n,0);
     forin(v,n);
+    // sorting the vector
     srt(v);
     ll x=v[n-1];
     ll y=v[n-2];
