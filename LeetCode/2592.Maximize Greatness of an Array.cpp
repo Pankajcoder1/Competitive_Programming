@@ -26,7 +26,7 @@ public:
         int pos=0;
 
         for(int i=0;i<n;i++){
-            while(pos<n && v1[i].>=firstv2[pos]){
+            while(pos<n && v1[i].first >= v2[pos]){
                 pos++;
             }
             if(pos<n){
