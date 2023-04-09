@@ -4,120 +4,62 @@
 */
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll ;
-typedef vector<ll> vl;
-typedef vector<bool> vb;
-typedef vector<char> vc;
-typedef map<ll,ll> ml;
-typedef set<char>sc;
-typedef set<ll> sl;
-#define pan cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(0);
-// define values.
-#define mod 10000009
-#define phi 1.618
-/* Bit-Stuff */
-#define get_set_bits(a) (__builtin_popcount(a))
-#define get_set_bitsll(a) ( __builtin_popcountll(a))
-#define get_trail_zero(a) (__builtin_ctz(a))
-#define get_lead_zero(a) (__builtin_clz(a))
-#define get_parity(a) (__builtin_parity(a))
-/*  Abbrevations  */
-#define ff first
-#define ss second
-#define mp make_pair
-#define line cout<<endl;
-#define pb push_back
-#define Endl "\n"
-// loops
-#define forin(arr,n) for(ll i=0;i<n;i++) cin>>arr[i];
-// Some print
-#define no cout<<"NO"<<endl;
-#define yes cout<<"YES"<<endl;
-#define cc ll test;cin>>test;while(test--)
-// sort
-#define all(V) (V).begin(),(V).end()
-#define srt(V) sort(all(V))
-#define srtGreat(V) sort(all(V),greater<ll>())
-// function
+typedef long long ll;
 
-ll power(ll x,ll y)
-{
-	ll res=1;
-	// x=x%mod;
-	while(y>0)
-	{
-		if(y%2==1)
-		{
-			res*=x;
-			// res=res%mod;
-		}
-		y/=2; x*=x; // x=x%mod;
-	}
-	return res;
-}
-/* ascii value 
-A=65,Z=90,a=97,z=122
-*/
-/*  -----------------------------------------------------------------------------------*/
-
-
-ll solve()
+int solve()
 {
 	string s;
-	cin>>s;
-	map<char,ll> m;
-	for(auto x:s)
+	cin >> s;
+	map<char, ll> m;
+	for (auto x : s)
+	{
 		m[x]++;
-	ll temp1=min(m['U'],m['D']);
-	ll temp2=min(m['L'],m['R']);
-	if(temp1==0&&temp2==0)
-	{
-		cout<<0<<endl;
-		cout<<" "<<endl;
 	}
-	else if(temp1==0)
+
+	ll minUD = min(m['U'], m['D']);
+	ll minLR = min(m['L'], m['R']);
+
+	if (minUD == 0 && minLR == 0)
 	{
-		if(temp2>=1)
-		{
-			cout<<2<<endl<<"LR"<<endl;
-		}
-		else
-		{
-			cout<<0<<endl<<" "<<endl;
-		}
+		cout << 0 << endl;
+		cout << " " << endl;
 	}
-	else if(temp2==0)
+	else if (minUD == 0)
 	{
-		if(temp1>=1)
-		{
-			cout<<2<<endl<<"UD"<<endl;
-		}
+		cout << 2 << endl
+			 << "LR" << endl;
+	}
+	else if (minLR == 0)
+	{
+		cout << 2 << endl
+			 << "UD" << endl;
 	}
 	else
 	{
-		string s="";
-		for(ll i=0;i<temp1;i++)
+		string s = "";
+		for (ll i = 0; i < minUD; i++)
 		{
-			s+='U';
+			s += 'U';
 		}
-		for(ll i=0;i<temp2;i++)
-			s+='R';
-		for(ll i=0;i<temp1;i++)
-			s+='D';
-		for(ll i=0;i<temp2;i++)
-			s+='L';
-		cout<<s.size()<<endl<<s<<endl;
+		for (ll i = 0; i < minLR; i++)
+		{
+			s += 'R';
+		}
+		s += string(minUD, 'D');
+		s += string(minLR, 'L');
+
+		cout << s.size() << endl
+			 << s << endl;
 	}
 	return 0;
 }
-
 int main()
 {
-	//freopen("input.txt"a, "r", stdin);
-	pan;
-	// solve();
-	cc
+	int testCase = 1;
+	cin >> testCase;
+	while (testCase--)
 	{
 		solve();
 	}
+	return 0;
 }
