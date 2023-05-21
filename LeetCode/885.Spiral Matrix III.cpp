@@ -20,6 +20,7 @@ public:
         vector<vector<int>> ans{{r, c}};
         int size = rows * cols, len = 1;
         int x = r, y = c;
+        
         while (ans.size() < size)
         {
             for (int j = 1; j <= len; j++)
