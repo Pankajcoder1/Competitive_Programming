@@ -32,3 +32,15 @@ I love to write code in [C++](https://medium.com/sololearn/reasons-to-love-c-11c
 - [Timus](https://acm.timus.ru/problemset.aspx)
 - [Leetcode](https://leetcode.com/problemset/all/)
 - [Spoj](https://www.spoj.com/problems/classical/)
+
+---
+### Commit pattern
+```
+platform_name: operation question/name
+```
+```
+Example: 
+leetcode: add/modify 000 
+codeforces: add/modify 000A
+general: add/modify description
+```
