@@ -11,7 +11,7 @@ const ll mod2=998244353;
 class Solution
 {
 public:
-    int bitwiseComplement(int n)
+    int findComplement(int n)
     {
         if (n == 0)
             return 1;
