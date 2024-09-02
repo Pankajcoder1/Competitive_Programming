@@ -58,7 +58,7 @@ public:
             else
                 return i;
         }
-        return sz(chalk)-1;
+        return 0;
     }
 };
 
